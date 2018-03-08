@@ -1,0 +1,48 @@
+$huge: 24px;
+$large: 18px;
+$normal: 16px;
+$small: 14px;
+$tiny: 12px;
+
+@mixin main-font {
+  font-family: 'Roboto', sans-serif;
+}
+
+@mixin brand-font {
+  font-family: 'Copse', serif;
+}
+
+@mixin huge-font-style {
+  @include brand-font;
+  font-size: $huge;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+@mixin large-font-style {
+  @include main-font;
+  font-size: $large;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@mixin normal-font-style {
+  @include main-font;
+  font-size: $normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@mixin small-font-style {
+  @include main-font;
+  font-size: $small;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+@mixin tiny-font-style {
+  @include main-font;
+  font-size: $tiny;
+  font-weight: 400;
+  line-height: 20px;
+}
