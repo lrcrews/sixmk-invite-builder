@@ -1,7 +1,0 @@
-@import "../assets/stylesheets/mixins/mixins.scss";
-
-h1 {
-  @include huge-font-style;
-
-  color: $font-brand;
-}

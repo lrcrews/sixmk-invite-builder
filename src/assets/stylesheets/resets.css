@@ -1,0 +1,52 @@
+@import "./mixins/mixins.scss";
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+ol,
+ul {
+  clear: both;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+.link {
+  color: #6a6760;
+  text-decoration: none;
+}
+
+a:active,
+a:hover,
+.link:active,
+.link:hover {
+  color: #777777;
+  text-shadow: 1px 1px 1px inset #6a6760;
+}
+
+a:hover,
+.link:hover {
+  text-decoration: underline;
+  text-decoration-color: #dc0062;
+}
+  
+a:visited,
+.link:visited {
+  color: #6a6760;
+}
+
+body {
+  background-color: #f8f8f8;
+  color: #333333;
+  margin: 0;
+}

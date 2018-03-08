@@ -1,0 +1,43 @@
+@import "../../assets/stylesheets/mixins/mixins.scss";
+
+div#header-component {
+  background-color: $background-tile;
+  box-shadow: 0 1px 2px 0 rgba(70, 80, 100, 0.6);
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+
+  > section {
+    height: 100%;
+    position: relative;
+    width: 100%;
+
+    > header {
+      color: $font-black;
+      padding: 16px;
+
+      @include huge-font-style;
+    }
+
+    > footer {
+      position: absolute;
+      right: 16px;
+      top: 18px;
+
+      > div,
+      > span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      > div {
+        cursor: pointer;
+
+        > span {
+          color: $font-brand;
+        }
+      }
+    }
+  }
+}
