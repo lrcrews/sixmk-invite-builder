@@ -1,0 +1,9 @@
+@import "../../../assets/stylesheets/mixins/mixins.scss";
+
+section.canvas-container-component {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 60px;
+}
