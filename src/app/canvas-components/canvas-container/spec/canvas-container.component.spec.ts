@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+
 import { CanvasContainerComponent } from "../canvas-container.component";
 
 describe("CanvasContainerComponent", () => {
@@ -11,6 +13,9 @@ describe("CanvasContainerComponent", () => {
       declarations: [
         CanvasContainerComponent
       ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ]
     }).compileComponents();
   }));
 
@@ -21,6 +26,26 @@ describe("CanvasContainerComponent", () => {
 
   it("should be created", () => {
     expect(component).toBeTruthy();
+  });
+
+  describe("hideCollectionSettings", () => {
+
+    it("should set the collection settings visibility varible to 'false'", () => {
+      component.collectionSettingsVisible = true;
+      component.hideCollectionSettings();
+      expect(component.collectionSettingsVisible).toBeFalsy();
+    });
+
+  });
+
+  describe("showCollectionSettings", () => {
+
+    it("should set the collection settings visibility varible to 'true'", () => {
+      component.collectionSettingsVisible = false;
+      component.showCollectionSettings();
+      expect(component.collectionSettingsVisible).toBeTruthy();
+    });
+
   });
 
 });

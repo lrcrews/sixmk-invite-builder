@@ -6,4 +6,38 @@ section.canvas-container-component {
   position: absolute;
   right: 0;
   top: 60px;
+
+  > div {
+    position: absolute;
+    z-index: 100;
+
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+
+    &.collection-settings {
+      left: 20px;
+      top: 60px;
+      width: $collection-settings-width;
+
+      &.off-screen {
+        left: -$collection-settings-width;
+      }
+    }
+
+    &.show-collection-settings {
+      background-color: $background-tile;
+      color: $font-brand;
+      cursor: pointer;
+      height: 40px;
+      left: 8px;
+      top: 60px;
+      width: 40px;
+
+      &.off-screen {
+        left: -48px;
+      }
+    }
+  }
 }

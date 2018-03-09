@@ -1,3 +1,15 @@
 <section class="canvas-container-component">
 
+  <div [ngClass]="{ 'off-screen': !collectionSettingsVisible, 'collection-settings': true }">
+    <app-collection-settings
+      (onHideClicked)="hideCollectionSettings()">
+    </app-collection-settings>
+  </div>
+  <div [ngClass]="{ 'off-screen': collectionSettingsVisible, 'show-collection-settings': true }">
+    <app-off-screen-tab
+      [iconName]="'fa-arrow-alt-circle-right'"
+      (onShowClicked)="showCollectionSettings()">
+    </app-off-screen-tab>
+  </div>
+
 </section>

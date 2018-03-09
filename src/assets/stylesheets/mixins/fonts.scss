@@ -46,3 +46,10 @@ $tiny: 12px;
   font-weight: 400;
   line-height: 20px;
 }
+
+@mixin title-font-style {
+  @include brand-font;
+  font-size: $normal;
+  font-weight: 400;
+  line-height: 24px;
+}

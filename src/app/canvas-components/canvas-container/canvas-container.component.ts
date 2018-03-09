@@ -8,4 +8,14 @@ import { Component } from "@angular/core";
 
 export class CanvasContainerComponent {
 
+  collectionSettingsVisible = true;
+
+  hideCollectionSettings(): void {
+    this.collectionSettingsVisible = false;
+  }
+
+  showCollectionSettings(): void {
+    this.collectionSettingsVisible = true;
+  }
+
 }

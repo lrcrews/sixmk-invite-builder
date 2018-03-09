@@ -1,0 +1,26 @@
+@import "../../../assets/stylesheets/mixins/mixins.scss";
+
+section.off-screen-tab-component {
+  background-color: $background-tile;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px 0 rgba(70, 80, 100, 0.6);
+  
+  > div {
+    color: $font-brand;
+    cursor: pointer;
+    font-size: $huge;
+    line-height: 24px;
+    padding: 8px 0 7px;
+    text-align: center;
+    width: 40px;
+
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: darken($font-brand, 10%);
+    }
+  }
+}
