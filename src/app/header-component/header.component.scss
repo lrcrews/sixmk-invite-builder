@@ -18,6 +18,12 @@ div#header-component {
       padding: 16px;
 
       @include huge-font-style;
+
+      @media(max-width: 600px) {
+        font-size: $large;
+        line-height: 24px;
+        padding-top: 18px;
+      }
     }
 
     > footer {
@@ -36,6 +42,14 @@ div#header-component {
 
         > span {
           color: $font-brand;
+        }
+
+        > i.optional {
+          font-style: normal;
+
+          @media(max-width: 600px) {
+            display: none;
+          }
         }
       }
     }
