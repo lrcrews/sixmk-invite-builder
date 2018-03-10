@@ -3,9 +3,11 @@
 section.canvas-container-component {
   bottom: 0;
   left: 0;
+  overflow: hidden;
   position: absolute;
   right: 0;
   top: 60px;
+  width: 100%;
 
   > div {
     position: absolute;
