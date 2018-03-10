@@ -9,6 +9,7 @@ import { CanvasContainerComponent } from "./canvas-components/canvas-container/c
 import { CollectionSettingsComponent } from "./canvas-components/collection-settings/collection-settings.component";
 import { FooterComponent } from "./footer-component/footer.component";
 import { HeaderComponent } from "./header-component/header.component";
+import { LayerSettingsComponent } from "./canvas-components/layer-settings/layer-settings.component";
 import { OffScreenTabComponent } from "./canvas-components/off-screen-tab/off-screen-tab.component";
 
 @NgModule({
@@ -20,6 +21,7 @@ import { OffScreenTabComponent } from "./canvas-components/off-screen-tab/off-sc
     CollectionSettingsComponent,
     FooterComponent,
     HeaderComponent,
+    LayerSettingsComponent,
     OffScreenTabComponent
   ],
   imports: [

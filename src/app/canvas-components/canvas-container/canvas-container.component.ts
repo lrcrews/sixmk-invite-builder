@@ -10,7 +10,8 @@ export class CanvasContainerComponent {
 
   tileVisibilities = {
     about: false,
-    collectionSettings: true
+    collectionSettings: true,
+    layerSettings: true
   };
 
   hideTile(key: string): void {

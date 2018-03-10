@@ -57,5 +57,26 @@ section.canvas-container-component {
         left: -48px;
       }
     }
+
+    &.layer-settings {
+      right: 60px;
+      top: 60px;
+      width: $layer-settings-width;
+
+      &.off-screen {
+        right: -$layer-settings-width;
+      }
+    }
+
+    &.show-layer-settings {
+      height: 40px;
+      right: 60px;
+      top: 60px;
+      width: 40px;
+
+      &.off-screen {
+        right: -48px;
+      }
+    }
   }
 }
