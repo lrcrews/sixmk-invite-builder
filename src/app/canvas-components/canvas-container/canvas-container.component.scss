@@ -16,6 +16,27 @@ section.canvas-container-component {
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 
+    &.about {
+      left: 20px;
+      bottom: 80px;
+      width: $about-width;
+
+      &.off-screen {
+        left: -100%;
+      }
+    }
+
+    &.show-about {
+      height: 40px;
+      left: 20px;
+      bottom: 80px;
+      width: 40px;
+
+      &.off-screen {
+        left: -48px;
+      }
+    }
+
     &.collection-settings {
       left: 20px;
       top: 60px;
@@ -27,11 +48,8 @@ section.canvas-container-component {
     }
 
     &.show-collection-settings {
-      background-color: $background-tile;
-      color: $font-brand;
-      cursor: pointer;
       height: 40px;
-      left: 8px;
+      left: 20px;
       top: 60px;
       width: 40px;
 

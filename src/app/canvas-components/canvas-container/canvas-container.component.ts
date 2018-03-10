@@ -8,14 +8,21 @@ import { Component } from "@angular/core";
 
 export class CanvasContainerComponent {
 
-  collectionSettingsVisible = true;
+  tileVisibilities = {
+    about: false,
+    collectionSettings: true
+  };
 
-  hideCollectionSettings(): void {
-    this.collectionSettingsVisible = false;
+  hideTile(key: string): void {
+    this.tileVisibilities[key] = false;
   }
 
-  showCollectionSettings(): void {
-    this.collectionSettingsVisible = true;
+  showTile(key: string): void {
+    this.tileVisibilities[key] = true;
+  }
+
+  tileVisible(key: string): boolean {
+    return this.tileVisibilities[key] === true;
   }
 
 }

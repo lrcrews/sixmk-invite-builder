@@ -1,0 +1,57 @@
+@import "../../../assets/stylesheets/mixins/mixins.scss";
+
+section.about-component {
+  background-color: $background-tile;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px 0 rgba(70, 80, 100, 0.6);
+  padding: 16px 0;
+  width: $about-width;
+
+  > * {
+    display: inline-block;
+    margin-right: -4px;
+    vertical-align: middle;
+  }
+
+  > header {
+    border-right: 1px solid $font-gray;
+    padding: 0 16px;
+    width: calc(100% - 77px);
+
+    > ul {
+
+      > li {
+
+        &:last-child {
+          color: $font-gray;
+          
+          @include small-font-style;
+        }
+
+        > span {
+          @include brand-font;
+        }
+      }
+    }
+  }
+
+  > footer {
+    color: $font-brand;
+    cursor: pointer;
+    text-align: center;
+    width: 40px;
+
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: darken($font-brand, 10%);
+    }
+
+    > i {
+      font-size: $huge;
+    }
+  }
+}

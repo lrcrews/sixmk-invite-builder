@@ -1,14 +1,28 @@
 <section class="canvas-container-component">
 
-  <div [ngClass]="{ 'off-screen': !collectionSettingsVisible, 'collection-settings': true }">
+  <!-- Collection UI -->
+  <div [ngClass]="{ 'off-screen': !tileVisible('collectionSettings'), 'collection-settings': true }">
     <app-collection-settings
-      (onHideClicked)="hideCollectionSettings()">
+      (onHideClicked)="hideTile('collectionSettings')">
     </app-collection-settings>
   </div>
-  <div [ngClass]="{ 'off-screen': collectionSettingsVisible, 'show-collection-settings': true }">
+  <div [ngClass]="{ 'off-screen': tileVisible('collectionSettings'), 'show-collection-settings': true }">
     <app-off-screen-tab
       [iconName]="'fa-arrow-alt-circle-right'"
-      (onShowClicked)="showCollectionSettings()">
+      (onShowClicked)="showTile('collectionSettings')">
+    </app-off-screen-tab>
+  </div>
+
+  <!-- About UI -->
+  <div [ngClass]="{ 'off-screen': !tileVisible('about'), 'about': true }">
+    <app-about
+      (onHideClicked)="hideTile('about')">
+    </app-about>
+  </div>
+  <div [ngClass]="{ 'off-screen': tileVisible('about'), 'show-about': true }">
+    <app-off-screen-tab
+      [iconName]="'fa-question-circle'"
+      (onShowClicked)="showTile('about')">
     </app-off-screen-tab>
   </div>
 
