@@ -26,10 +26,12 @@ export class CanvasComponent {
     if (this.pocketInvitation === undefined) {
       return {};
     } else {
+      const polygonString = this._drawShape();
       return {
+        "-webkit-clip-path": polygonString,
         "background-color": this.pocketInvitation.color.hexCode,
-        "clip-path": this._drawShape(),
-        "shape-outside": this._drawShape()
+        "clip-path": polygonString,
+        "shape-outside": polygonString
       };
     }
   }

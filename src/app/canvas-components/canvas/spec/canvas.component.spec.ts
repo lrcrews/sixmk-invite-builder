@@ -69,6 +69,7 @@ describe("CanvasComponent", () => {
         12.49
       );
       expect(component.outlineStyles()).toEqual({
+        "-webkit-clip-path": "polygon(0% 50%, 8% 100%, 100% 100%, 100% 0%, 8% 0%)",
         "background-color": "#dc0062",
         "clip-path": "polygon(0% 50%, 8% 100%, 100% 100%, 100% 0%, 8% 0%)",
         "shape-outside": "polygon(0% 50%, 8% 100%, 100% 100%, 100% 0%, 8% 0%)"
