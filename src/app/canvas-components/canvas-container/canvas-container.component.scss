@@ -81,4 +81,10 @@ section.canvas-container-component {
       }
     }
   }
+
+  > section {
+    height: 90vw;
+    margin: 0 auto;
+    width: 90vw;
+  }
 }
