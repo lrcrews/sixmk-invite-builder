@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { Color } from "../../../models/color";
-import { FoldLine } from "../../../models/fold-line";
+import { Line } from "../../../models/line";
 import { PocketInvitation } from "../../../models/pocket-invitation";
 import { PocketInvitationCanvasComponent } from "../pocket-invitation-canvas.component";
 import { Point } from "../../../models/point";
@@ -35,7 +35,7 @@ describe("PocketInvitationCanvasComponent", () => {
     });
 
     it("should return a hash with 'height' property that is the relative heigt percentage", () => {
-      component.pocketInvitation = new PocketInvitation(undefined, [], 7, "id1", "name1", [], 11.49);
+      component.pocketInvitation = new PocketInvitation(undefined, [], 7, "id1", "name1", [], [], 11.49);
       // x = (height / width) * 100
       // x = (7 / 11.49) * 100
       // x = (0.60922) * 100
@@ -58,8 +58,8 @@ describe("PocketInvitationCanvasComponent", () => {
       component.pocketInvitation = new PocketInvitation(
         new Color("#dc0062", "hotness", "foobar"),
         [
-          new FoldLine( new Point(21.76, 100), new Point(21.76, 0) ),
-          new FoldLine( new Point(65.27, 100), new Point(65.27, 0) )
+          new Line( new Point(21.76, 100), new Point(21.76, 0) ),
+          new Line( new Point(65.27, 100), new Point(65.27, 0) )
         ],
         7,
         "1",
@@ -71,6 +71,7 @@ describe("PocketInvitationCanvasComponent", () => {
           new Point(100, 0),
           new Point(8.7, 0)
         ],
+        [],
         11.49
       );
       expect(component.outlineStyles()).toEqual({
@@ -83,11 +84,11 @@ describe("PocketInvitationCanvasComponent", () => {
 
   });
 
-  describe("foldStyles", () => {
+  describe("lineStyles", () => {
 
     it("should return an empty hash if the pocketInvitation is undefined", () => {
       component.pocketInvitation = undefined;
-      expect(component.foldStyles(new FoldLine( new Point(21.76, 100), new Point(21.76, 0) ))).toEqual({});
+      expect(component.lineStyles(new Line( new Point(21.76, 100), new Point(21.76, 0) ))).toEqual({});
     });
 
     it("should return a hash with 'left', 'top', 'transform', and 'width'" +
@@ -95,8 +96,8 @@ describe("PocketInvitationCanvasComponent", () => {
       component.pocketInvitation = new PocketInvitation(
         new Color("#dc0062", "hotness", "foobar"),
         [
-          new FoldLine( new Point(21.76, 100), new Point(21.76, 0) ),
-          new FoldLine( new Point(65.27, 100), new Point(65.27, 0) )
+          new Line( new Point(21.76, 100), new Point(21.76, 0) ),
+          new Line( new Point(65.27, 100), new Point(65.27, 0) )
         ],
         7,
         "1",
@@ -108,6 +109,7 @@ describe("PocketInvitationCanvasComponent", () => {
           new Point(100, 0),
           new Point(8.7, 0)
         ],
+        [],
         11.49
       );
       spyOnProperty(component.containerDiv.nativeElement, "offsetHeight", "get").and.returnValue(609);
@@ -124,10 +126,10 @@ describe("PocketInvitationCanvasComponent", () => {
       // w = sqrt( sq(0) + sq(609) )
       // w = sqrt( 370881 )
       // w = 609
-      expect(component.foldStyles(component.pocketInvitation.folds[0])).toEqual({
+      expect(component.lineStyles(component.pocketInvitation.folds[0])).toEqual({
         left: "21.76%",
-        top: "100%",
-        transform: "rotate(-90deg)",
+        top: "0%",
+        transform: "rotate(90deg)",
         width: "609px"
       });
     });

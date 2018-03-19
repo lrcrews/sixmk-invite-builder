@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 import { Color } from "../../models/color";
-import { FoldLine } from "../../models/fold-line";
+import { Line } from "../../models/line";
 import { PocketInvitation } from "../../models/pocket-invitation";
 import { Point } from "../../models/point";
 
@@ -25,8 +25,8 @@ export class CanvasContainerComponent implements OnInit {
     this.pocketInvitation = new PocketInvitation(
       new Color("#dc0062", "hotness", "foobar"),
       [
-        new FoldLine( new Point(21.76, 100), new Point(21.76, 0) ),
-        new FoldLine( new Point(65.27, 100), new Point(65.27, 0) )
+        new Line( new Point(21.76, 100), new Point(21.76, 0) ),
+        new Line( new Point(65.27, 100), new Point(65.27, 0) )
       ],
       7,
       "1",
@@ -37,6 +37,10 @@ export class CanvasContainerComponent implements OnInit {
         new Point(100, 100),
         new Point(100, 0),
         new Point(8.7, 0)
+      ],
+      [
+        new Line( new Point(65.27, 42.86), new Point(82.25, 35.71) ),
+        new Line( new Point(82.25, 35.71), new Point(100, 42.86) )
       ],
       11.49
     );

@@ -2,7 +2,8 @@
 
   <div #containerDiv [ngStyle]="containerStyles()">
     <div [ngStyle]="outlineStyles()">
-      <div *ngFor="let fold of pocketInvitation.folds" [ngStyle]="foldStyles(fold)"></div>
+      <div *ngFor="let fold of pocketInvitation.folds" [ngStyle]="lineStyles(fold)"></div>
+      <div *ngFor="let pocketLine of pocketInvitation.pocketLines" [ngStyle]="lineStyles(pocketLine)"></div>
     </div>
   </div>
 

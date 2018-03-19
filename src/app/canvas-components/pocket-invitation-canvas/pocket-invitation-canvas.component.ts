@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 
-import { FoldLine } from "../../models/fold-line";
+import { Line } from "../../models/line";
 import { PocketInvitation } from "../../models/pocket-invitation";
 import { Point } from "../../models/point";
 
@@ -40,15 +40,16 @@ export class PocketInvitationCanvasComponent {
     }
   }
 
-  foldStyles(foldLine: FoldLine): {} {
+  lineStyles(line: Line): {} {
     if (this.pocketInvitation === undefined) {
       return {};
     } else {
-      const length = this._lineLength(foldLine.point1, foldLine.point2);
-      const angle = this._lineAngle(foldLine.point1, foldLine.point2);
+      const angle = this._lineAngle(line.point1, line.point2);
+      const length = this._lineLength(line.point1, line.point2);
+      const top = 100 - line.point1.y;
       return {
-        left: `${foldLine.point1.x}%`,
-        top: `${foldLine.point1.y}%`,
+        left: `${line.point1.x}%`,
+        top: `${top}%`,
         transform: `rotate(${angle}deg)`,
         width: `${length}px`
       };
@@ -82,7 +83,7 @@ export class PocketInvitationCanvasComponent {
   private _lineAngle(relativePoint1: Point, relativePoint2: Point): number {
     const point1 = this._actualPointValues(relativePoint1);
     const point2 = this._actualPointValues(relativePoint2);
-    return Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180 / Math.PI;
+    return (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180 / Math.PI) * -1;
   }
 
   private _actualPointValues(relativePoint: Point): { x: number, y: number} {
