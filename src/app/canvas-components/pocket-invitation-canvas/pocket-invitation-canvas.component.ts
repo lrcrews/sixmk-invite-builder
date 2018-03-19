@@ -5,12 +5,12 @@ import { PocketInvitation } from "../../models/pocket-invitation";
 import { Point } from "../../models/point";
 
 @Component({
-  selector: "app-canvas",
-  styleUrls: [ "./canvas.component.scss" ],
-  templateUrl: "./canvas.component.html"
+  selector: "app-pocket-invitation-canvas",
+  styleUrls: [ "./pocket-invitation-canvas.component.scss" ],
+  templateUrl: "./pocket-invitation-canvas.component.html"
 })
 
-export class CanvasComponent {
+export class PocketInvitationCanvasComponent {
 
   @Input() pocketInvitation: PocketInvitation;
 

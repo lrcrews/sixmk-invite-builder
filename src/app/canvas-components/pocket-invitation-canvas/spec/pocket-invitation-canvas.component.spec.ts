@@ -1,25 +1,25 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CanvasComponent } from "../canvas.component";
 import { Color } from "../../../models/color";
 import { FoldLine } from "../../../models/fold-line";
 import { PocketInvitation } from "../../../models/pocket-invitation";
+import { PocketInvitationCanvasComponent } from "../pocket-invitation-canvas.component";
 import { Point } from "../../../models/point";
 
-describe("CanvasComponent", () => {
-  let component: CanvasComponent;
-  let fixture: ComponentFixture<CanvasComponent>;
+describe("PocketInvitationCanvasComponent", () => {
+  let component: PocketInvitationCanvasComponent;
+  let fixture: ComponentFixture<PocketInvitationCanvasComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CanvasComponent
+        PocketInvitationCanvasComponent
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CanvasComponent);
+    fixture = TestBed.createComponent(PocketInvitationCanvasComponent);
     component = fixture.debugElement.componentInstance;
   });
 
