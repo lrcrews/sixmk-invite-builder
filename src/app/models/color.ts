@@ -27,7 +27,7 @@ export class Color {
   }
 
   static defaultInvitationColor(): Color {
-    return new Color("#dc0062", "hotness", "foobar");
+    return new Color("#685b5d", "Dark Grey", "tbd");
   }
 
   constructor(public hexCode: string,

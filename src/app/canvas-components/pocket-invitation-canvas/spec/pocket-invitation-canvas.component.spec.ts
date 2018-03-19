@@ -136,4 +136,36 @@ describe("PocketInvitationCanvasComponent", () => {
 
   });
 
+  describe("updateLineStyles", () => {
+
+    it("should call 'lineStyles' for each line in the 'folds' and 'pocketLines' arrays", () => {
+      component.pocketInvitation = new PocketInvitation(
+        new Color("#dc0062", "hotness", "foobar"),
+        [
+          new Line( new Point(21.76, 100), new Point(21.76, 0) ),
+          new Line( new Point(65.27, 100), new Point(65.27, 0) )
+        ],
+        7,
+        "1",
+        "Signature",
+        [
+          new Point(0, 50),
+          new Point(8.7, 100),
+          new Point(100, 100),
+          new Point(100, 0),
+          new Point(8.7, 0)
+        ],
+        [
+          new Line( new Point(65.27, 42.86), new Point(82.25, 35.71) ),
+          new Line( new Point(82.25, 35.71), new Point(100, 42.86) )
+        ],
+        11.49
+      );
+      spyOn(component, "lineStyles");
+      component.updateLineStyles();
+      expect(component.lineStyles).toHaveBeenCalledTimes(4);
+    });
+
+  });
+
 });

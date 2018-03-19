@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from "@angular/core";
+import { Component, ElementRef, HostListener, Input, ViewChild } from "@angular/core";
 
 import { Line } from "../../models/line";
 import { PocketInvitation } from "../../models/pocket-invitation";
@@ -54,6 +54,16 @@ export class PocketInvitationCanvasComponent {
         width: `${length}px`
       };
     }
+  }
+
+  @HostListener("window:resize", ["$event"])
+  updateLineStyles(): void {
+    this.pocketInvitation.folds.forEach(fold => {
+      this.lineStyles(fold);
+    });
+    this.pocketInvitation.pocketLines.forEach(pocketLine => {
+      this.lineStyles(pocketLine);
+    });
   }
 
   private _relativePocketInvitationHeight(): string {

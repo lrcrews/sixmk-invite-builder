@@ -42,7 +42,9 @@ export class CanvasContainerComponent implements OnInit {
   }
 
   private _loadPocketInvitations(): void {
+    console.log("loading...");
     this._sixmkApiService.pocketInvitations().subscribe( invitations => {
+      console.log("setting...");
       this.pocketInvitations = invitations;
       // TODO: read url params to select the desired invitation, but for now
       this.selectedPocketInvitation = this.pocketInvitations[0];
