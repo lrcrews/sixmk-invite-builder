@@ -4,6 +4,7 @@ import { Color } from "../../models/color";
 import { Line } from "../../models/line";
 import { PocketInvitation } from "../../models/pocket-invitation";
 import { Point } from "../../models/point";
+import { SixmkApiService } from "../../services/sixmk-api.service";
 
 @Component({
   selector: "app-canvas-container",
@@ -13,7 +14,8 @@ import { Point } from "../../models/point";
 
 export class CanvasContainerComponent implements OnInit {
 
-  pocketInvitation: PocketInvitation;
+  pocketInvitations: Array<PocketInvitation>;
+  selectedPocketInvitation = PocketInvitation.emptyInstance();
 
   tileVisibilities = {
     about: false,
@@ -21,29 +23,10 @@ export class CanvasContainerComponent implements OnInit {
     layerSettings: true
   };
 
+  constructor(private _sixmkApiService: SixmkApiService) { }
+
   ngOnInit(): void {
-    this.pocketInvitation = new PocketInvitation(
-      new Color("#dc0062", "hotness", "foobar"),
-      [
-        new Line( new Point(21.76, 100), new Point(21.76, 0) ),
-        new Line( new Point(65.27, 100), new Point(65.27, 0) )
-      ],
-      7,
-      "1",
-      "Signature",
-      [
-        new Point(0, 50),
-        new Point(8.7, 100),
-        new Point(100, 100),
-        new Point(100, 0),
-        new Point(8.7, 0)
-      ],
-      [
-        new Line( new Point(65.27, 42.86), new Point(82.25, 35.71) ),
-        new Line( new Point(82.25, 35.71), new Point(100, 42.86) )
-      ],
-      11.49
-    );
+    this._loadPocketInvitations();
   }
 
   hideTile(key: string): void {
@@ -56,6 +39,17 @@ export class CanvasContainerComponent implements OnInit {
 
   tileVisible(key: string): boolean {
     return this.tileVisibilities[key] === true;
+  }
+
+  private _loadPocketInvitations(): void {
+    this._sixmkApiService.pocketInvitations().subscribe( invitations => {
+      this.pocketInvitations = invitations;
+      // TODO: read url params to select the desired invitation, but for now
+      this.selectedPocketInvitation = this.pocketInvitations[0];
+      if (this.selectedPocketInvitation.color === undefined) {
+        this.selectedPocketInvitation.color = Color.defaultInvitationColor();
+      }
+    });
   }
 
 }

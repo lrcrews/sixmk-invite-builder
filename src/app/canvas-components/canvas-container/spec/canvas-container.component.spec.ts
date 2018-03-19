@@ -1,8 +1,11 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { HttpModule } from "@angular/http";
+
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { CanvasContainerComponent } from "../canvas-container.component";
+import { SixmkApiService } from "../../../services/sixmk-api.service";
 
 describe("CanvasContainerComponent", () => {
   let component: CanvasContainerComponent;
@@ -12,6 +15,12 @@ describe("CanvasContainerComponent", () => {
     TestBed.configureTestingModule({
       declarations: [
         CanvasContainerComponent
+      ],
+      imports: [
+        HttpModule
+      ],
+      providers: [
+        SixmkApiService
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA

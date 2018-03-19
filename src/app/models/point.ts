@@ -7,6 +7,27 @@
 
 export class Point {
 
+  static fromJsonArray(jsonArray: Array<any>): Array<Point> {
+    const points: Array<Point> = [];
+    if (jsonArray) {
+      for (const pointJson of jsonArray) {
+        points.push(Point.fromJson(pointJson));
+      }
+    }
+    return points;
+  }
+
+  static fromJson(json: any): Point {
+    if (json) {
+      return new Point(
+        json["xPercent"],
+        json["yPercent"]
+      );
+    } else {
+      return undefined;
+    }
+  }
+
   constructor(public x: number,
               public y: number) { }
 

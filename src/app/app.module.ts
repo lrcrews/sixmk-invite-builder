@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { HttpModule } from "@angular/http";
 
 import { BrowserModule } from "@angular/platform-browser";
 
@@ -12,6 +13,8 @@ import { HeaderComponent } from "./header-component/header.component";
 import { LayerSettingsComponent } from "./canvas-components/layer-settings/layer-settings.component";
 import { OffScreenTabComponent } from "./canvas-components/off-screen-tab/off-screen-tab.component";
 import { PocketInvitationCanvasComponent } from "./canvas-components/pocket-invitation-canvas/pocket-invitation-canvas.component"; // tslint:disable-line
+
+import { SixmkApiService } from "./services/sixmk-api.service";
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -27,9 +30,12 @@ import { PocketInvitationCanvasComponent } from "./canvas-components/pocket-invi
     PocketInvitationCanvasComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
-  providers: []
+  providers: [
+    SixmkApiService
+  ]
 })
 
 export class AppModule { }
