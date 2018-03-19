@@ -1,7 +1,8 @@
 <section class="canvas-component">
 
-  <div [ngStyle]="containerStyles()">
+  <div #containerDiv [ngStyle]="containerStyles()">
     <div [ngStyle]="outlineStyles()">
+      <div *ngFor="let fold of pocketInvitation.folds" [ngStyle]="foldStyles(fold)"></div>
     </div>
   </div>
 

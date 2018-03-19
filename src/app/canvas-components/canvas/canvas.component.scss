@@ -5,15 +5,24 @@ section.canvas-component {
   width: 100%;
 
   > div {
-    height: 56.04%;
-    margin-top: 70px;
+    margin-top: 30px;
     overflow: hidden;
     width: 100%;
 
     > div {
       float: left;
       height: 100%;
+      position: relative;
       width: 100%;
+
+      > div {
+        background-color: $background-page;
+        border: 1px solid $font-gray;
+        height: 1px;
+        margin-top: -2px;
+        position: absolute;
+        transform-origin: 0 100%;
+      }
     }
   }
 }
