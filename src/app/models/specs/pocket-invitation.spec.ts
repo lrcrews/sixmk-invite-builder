@@ -54,7 +54,7 @@ describe("PocketInvitation", () => {
           }
         ],
         heightInInches: 7,
-        id: "pi-1",
+        id: "1",
         name: "Signature",
         outlinePoints: [
           {
@@ -106,7 +106,7 @@ describe("PocketInvitation", () => {
       expect(invitation.color).toBeUndefined();
       expect(invitation.folds.length).toEqual(2);
       expect(invitation.height).toEqual(7);
-      expect(invitation.id).toEqual("pi-1");
+      expect(invitation.id).toEqual("1");
       expect(invitation.name).toEqual("Signature");
       expect(invitation.outline.length).toEqual(5);
       expect(invitation.pocketLines.length).toEqual(2);
