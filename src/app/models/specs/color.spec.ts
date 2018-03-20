@@ -35,6 +35,7 @@ describe("Color", () => {
         hexCode: "#dc0062",
         id: "1",
         isMetallic: false,
+        isTextured: false,
         name: "hotness",
         printCode: "foobar"
       });
@@ -45,6 +46,7 @@ describe("Color", () => {
       expect(color.hexCode).toEqual("#dc0062");
       expect(color.id).toEqual("1");
       expect(color.isMetallic).toBeFalsy();
+      expect(color.isTextured).toBeFalsy();
       expect(color.name).toEqual("hotness");
       expect(color.printCode).toEqual("foobar");
     });
@@ -62,6 +64,7 @@ describe("Color", () => {
       expect(color.hexCode).toEqual("");
       expect(color.id).toEqual("");
       expect(color.isMetallic).toBeFalsy();
+      expect(color.isTextured).toBeFalsy();
       expect(color.name).toEqual("");
       expect(color.printCode).toEqual("");
     });
@@ -77,8 +80,9 @@ describe("Color", () => {
       expect(color.availableForInsert).toBeTruthy();
       expect(color.availableForInvitation).toBeTruthy();
       expect(color.hexCode).toEqual("#685b5d");
-      expect(color.id).toEqual("tbd");
+      expect(color.id).toEqual("75");
       expect(color.isMetallic).toBeFalsy();
+      expect(color.isTextured).toBeFalsy();
       expect(color.name).toEqual("Dark Grey");
       expect(color.printCode).toEqual("C:67 M:55 Y:44 K:20");
     });

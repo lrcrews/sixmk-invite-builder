@@ -22,6 +22,7 @@ export class Color {
         json["hexCode"],
         json["id"],
         json["isMetallic"],
+        json["isTextured"],
         json["name"],
         json["printCode"]
       );
@@ -31,11 +32,13 @@ export class Color {
   }
 
   static emptyInstance(): Color {
-    return new Color(false, false, false, false, 0, 0, "", "", false, "", "");
+    return new Color(false, false, false, false, 0, 0, "", "", false, false, "", "");
   }
 
   static defaultInvitationColor(): Color {
-    return new Color(true, true, true, true, 100, 270, "#685b5d", "tbd", false, "Dark Grey", "C:67 M:55 Y:44 K:20");
+    return new Color(
+      true, true, true, true, 100, 270, "#685b5d", "75", false, false, "Dark Grey", "C:67 M:55 Y:44 K:20"
+    );
   }
 
   constructor(public availableForBellyBand: boolean,
@@ -47,6 +50,7 @@ export class Color {
               public hexCode: string,
               public id: string,
               public isMetallic: boolean,
+              public isTextured: boolean,
               public name: string,
               public printCode: string) { }
 

@@ -56,7 +56,7 @@ describe("PocketInvitationCanvasComponent", () => {
     it("should return a hash with 'background-color', 'clip-path', and 'shape-outside'" +
        "values set based on pocketInvitation", () => {
       component.pocketInvitation = new PocketInvitation(
-        new Color(true, true, true, true, 100, 100, "#dc0062", "id1", false, "hotness", "foobar"),
+        new Color(true, true, true, true, 100, 100, "#dc0062", "id1", false, false, "hotness", "foobar"),
         [
           new Line( new Point(21.76, 100), new Point(21.76, 0) ),
           new Line( new Point(65.27, 100), new Point(65.27, 0) )
@@ -94,7 +94,7 @@ describe("PocketInvitationCanvasComponent", () => {
     it("should return a hash with 'left', 'top', 'transform', and 'width'" +
        "values set based on pocketInvitation and ElementRef's native element's size", () => {
       component.pocketInvitation = new PocketInvitation(
-        new Color(true, true, true, true, 100, 100, "#dc0062", "id1", false, "hotness", "foobar"),
+        new Color(true, true, true, true, 100, 100, "#dc0062", "id1", false, false, "hotness", "foobar"),
         [
           new Line( new Point(21.76, 100), new Point(21.76, 0) ),
           new Line( new Point(65.27, 100), new Point(65.27, 0) )
@@ -140,7 +140,7 @@ describe("PocketInvitationCanvasComponent", () => {
 
     it("should call 'lineStyles' for each line in the 'folds' and 'pocketLines' arrays", () => {
       component.pocketInvitation = new PocketInvitation(
-        new Color(true, true, true, true, 100, 100, "#dc0062", "id1", false, "hotness", "foobar"),
+        new Color(true, true, true, true, 100, 100, "#dc0062", "id1", false, false, "hotness", "foobar"),
         [
           new Line( new Point(21.76, 100), new Point(21.76, 0) ),
           new Line( new Point(65.27, 100), new Point(65.27, 0) )

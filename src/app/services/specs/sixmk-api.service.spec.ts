@@ -20,6 +20,16 @@ describe("SixmkApiService", () => {
     expect(service).toBeTruthy();
   }));
 
+  describe("colors", () => {
+
+    it("should return an array of Colors", inject([SixmkApiService], (service: SixmkApiService) => {
+      service.colors().subscribe(colors => {
+        expect(colors).toBeDefined();
+      });
+    }));
+
+  });
+
   describe("pocketInvitations", () => {
 
     it("should return an array of PocketInvitations", inject([SixmkApiService], (service: SixmkApiService) => {
