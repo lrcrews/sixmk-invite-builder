@@ -32,7 +32,7 @@ describe("Color", () => {
         availableForEnvelope: true,
         availableForInsert: true,
         availableForInvitation: true,
-        hexCode: "#dc0062",
+        hexCode: "dc0062",
         id: "1",
         isMetallic: false,
         isTextured: false,
@@ -43,7 +43,7 @@ describe("Color", () => {
       expect(color.availableForEnvelope).toBeTruthy();
       expect(color.availableForInsert).toBeTruthy();
       expect(color.availableForInvitation).toBeTruthy();
-      expect(color.hexCode).toEqual("#dc0062");
+      expect(color.hexCode).toEqual("dc0062");
       expect(color.id).toEqual("1");
       expect(color.isMetallic).toBeFalsy();
       expect(color.isTextured).toBeFalsy();
@@ -79,7 +79,7 @@ describe("Color", () => {
       expect(color.availableForEnvelope).toBeTruthy();
       expect(color.availableForInsert).toBeTruthy();
       expect(color.availableForInvitation).toBeTruthy();
-      expect(color.hexCode).toEqual("#685b5d");
+      expect(color.hexCode).toEqual("685b5d");
       expect(color.id).toEqual("75");
       expect(color.isMetallic).toBeFalsy();
       expect(color.isTextured).toBeFalsy();

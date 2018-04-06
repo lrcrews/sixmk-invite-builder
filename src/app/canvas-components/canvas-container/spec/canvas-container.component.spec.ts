@@ -1,18 +1,25 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { APP_BASE_HREF } from "@angular/common";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { HttpModule } from "@angular/http";
+import { RouterModule } from "@angular/router";
 
 import { Observable } from "rxjs/Observable";
 
 import "rxjs/add/observable/of";
 
 import { CanvasContainerComponent } from "../canvas-container.component";
+import { Color } from "../../../models/color";
 import { PocketInvitation } from "../../../models/pocket-invitation";
 import { SixmkApiService } from "../../../services/sixmk-api.service";
 
 // api is tested in its own spec, so mock it out here.
 class MockApiService {
+  colors(): Observable<Array<Color>> {
+    return Observable.of([Color.defaultInvitationColor()]);
+  }
+
   pocketInvitations(): Observable<Array<PocketInvitation>> {
     return Observable.of([PocketInvitation.emptyInstance()]);
   }
@@ -28,9 +35,11 @@ describe("CanvasContainerComponent", () => {
         CanvasContainerComponent
       ],
       imports: [
-        HttpModule
+        HttpModule,
+        RouterModule.forRoot([])
       ],
       providers: [
+        { provide: APP_BASE_HREF, useValue: "/" },
         { provide: SixmkApiService, useClass: MockApiService }
       ],
       schemas: [
@@ -53,7 +62,7 @@ describe("CanvasContainerComponent", () => {
     it("should load the pocket invitations data", async(() => {
       component.ngOnInit();
       expect(component.pocketInvitations).toBeDefined();
-      expect(component.selectedPocketInvitation).toBeDefined();
+      expect(component.selectedInvitation).toBeDefined();
     }));
 
   });

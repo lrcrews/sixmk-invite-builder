@@ -6,6 +6,29 @@ import { PocketInvitation } from "../../../models/pocket-invitation";
 import { PocketInvitationCanvasComponent } from "../pocket-invitation-canvas.component";
 import { Point } from "../../../models/point";
 
+const pocketInvitationMock = new PocketInvitation(
+  new Color(true, true, true, true, 100, 100, "dc0062", "id1", false, false, "hotness", "foobar"),
+  [
+    new Line( new Point(21.76, 100), new Point(21.76, 0) ),
+    new Line( new Point(65.27, 100), new Point(65.27, 0) )
+  ],
+  7,
+  "1",
+  "Signature",
+  [
+    new Point(0, 50),
+    new Point(8.7, 100),
+    new Point(100, 100),
+    new Point(100, 0),
+    new Point(8.7, 0)
+  ],
+  [
+    new Line( new Point(65.27, 42.86), new Point(82.25, 35.71) ),
+    new Line( new Point(82.25, 35.71), new Point(100, 42.86) )
+  ],
+  11.49
+);
+
 describe("PocketInvitationCanvasComponent", () => {
   let component: PocketInvitationCanvasComponent;
   let fixture: ComponentFixture<PocketInvitationCanvasComponent>;
@@ -55,25 +78,7 @@ describe("PocketInvitationCanvasComponent", () => {
 
     it("should return a hash with 'background-color', 'clip-path', and 'shape-outside'" +
        "values set based on pocketInvitation", () => {
-      component.pocketInvitation = new PocketInvitation(
-        new Color(true, true, true, true, 100, 100, "#dc0062", "id1", false, false, "hotness", "foobar"),
-        [
-          new Line( new Point(21.76, 100), new Point(21.76, 0) ),
-          new Line( new Point(65.27, 100), new Point(65.27, 0) )
-        ],
-        7,
-        "1",
-        "Signature",
-        [
-          new Point(0, 50),
-          new Point(8.7, 100),
-          new Point(100, 100),
-          new Point(100, 0),
-          new Point(8.7, 0)
-        ],
-        [],
-        11.49
-      );
+      component.pocketInvitation = pocketInvitationMock;
       expect(component.outlineStyles()).toEqual({
         "-webkit-clip-path": "polygon(0% 50%, 8.7% 100%, 100% 100%, 100% 0%, 8.7% 0%)",
         "background-color": "#dc0062",
@@ -93,25 +98,7 @@ describe("PocketInvitationCanvasComponent", () => {
 
     it("should return a hash with 'left', 'top', 'transform', and 'width'" +
        "values set based on pocketInvitation and ElementRef's native element's size", () => {
-      component.pocketInvitation = new PocketInvitation(
-        new Color(true, true, true, true, 100, 100, "#dc0062", "id1", false, false, "hotness", "foobar"),
-        [
-          new Line( new Point(21.76, 100), new Point(21.76, 0) ),
-          new Line( new Point(65.27, 100), new Point(65.27, 0) )
-        ],
-        7,
-        "1",
-        "Signature",
-        [
-          new Point(0, 50),
-          new Point(8.7, 100),
-          new Point(100, 100),
-          new Point(100, 0),
-          new Point(8.7, 0)
-        ],
-        [],
-        11.49
-      );
+      component.pocketInvitation = pocketInvitationMock;
       spyOnProperty(component.containerDiv.nativeElement, "offsetHeight", "get").and.returnValue(609);
       spyOnProperty(component.containerDiv.nativeElement, "offsetWidth", "get").and.returnValue(1000);
       // width:
@@ -139,31 +126,44 @@ describe("PocketInvitationCanvasComponent", () => {
   describe("updateLineStyles", () => {
 
     it("should call 'lineStyles' for each line in the 'folds' and 'pocketLines' arrays", () => {
-      component.pocketInvitation = new PocketInvitation(
-        new Color(true, true, true, true, 100, 100, "#dc0062", "id1", false, false, "hotness", "foobar"),
-        [
-          new Line( new Point(21.76, 100), new Point(21.76, 0) ),
-          new Line( new Point(65.27, 100), new Point(65.27, 0) )
-        ],
-        7,
-        "1",
-        "Signature",
-        [
-          new Point(0, 50),
-          new Point(8.7, 100),
-          new Point(100, 100),
-          new Point(100, 0),
-          new Point(8.7, 0)
-        ],
-        [
-          new Line( new Point(65.27, 42.86), new Point(82.25, 35.71) ),
-          new Line( new Point(82.25, 35.71), new Point(100, 42.86) )
-        ],
-        11.49
-      );
+      component.pocketInvitation = pocketInvitationMock;
       spyOn(component, "lineStyles");
       component.updateLineStyles();
       expect(component.lineStyles).toHaveBeenCalledTimes(4);
+    });
+
+  });
+
+  describe("folds", () => {
+
+    it("should return an empty array if the pocketInvitation is undefined", () => {
+      component.pocketInvitation = undefined;
+      expect(component.folds()).toEqual([]);
+    });
+
+    it("should return the pocket invitation's folds", () => {
+      component.pocketInvitation = pocketInvitationMock;
+      expect(component.folds()).toEqual([
+        new Line( new Point(21.76, 100), new Point(21.76, 0) ),
+        new Line( new Point(65.27, 100), new Point(65.27, 0) )
+      ]);
+    });
+
+  });
+
+  describe("pocketLines", () => {
+
+    it("should return an empty array if the pocketInvitation is undefined", () => {
+      component.pocketInvitation = undefined;
+      expect(component.pocketLines()).toEqual([]);
+    });
+
+    it("should return the pocket invitation's pocket lines", () => {
+      component.pocketInvitation = pocketInvitationMock;
+      expect(component.pocketLines()).toEqual([
+        new Line( new Point(65.27, 42.86), new Point(82.25, 35.71) ),
+        new Line( new Point(82.25, 35.71), new Point(100, 42.86) )
+      ]);
     });
 
   });

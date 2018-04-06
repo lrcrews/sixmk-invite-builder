@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, Input, ViewChild } from "@angular/core";
 
+import { Color } from "../../models/color";
 import { Line } from "../../models/line";
 import { PocketInvitation } from "../../models/pocket-invitation";
 import { Point } from "../../models/point";
@@ -33,7 +34,7 @@ export class PocketInvitationCanvasComponent {
       const polygonString = this._drawShape();
       return {
         "-webkit-clip-path": polygonString,
-        "background-color": this.pocketInvitation.color.hexCode,
+        "background-color": this._invitationColorHexCode(),
         "clip-path": polygonString,
         "shape-outside": polygonString
       };
@@ -56,6 +57,22 @@ export class PocketInvitationCanvasComponent {
     }
   }
 
+  folds(): Array<Line> {
+    if (this.pocketInvitation === undefined) {
+      return [];
+    } else {
+      return this.pocketInvitation.folds;
+    }
+  }
+
+  pocketLines(): Array<Line> {
+    if (this.pocketInvitation === undefined) {
+      return [];
+    } else {
+      return this.pocketInvitation.pocketLines;
+    }
+  }
+
   @HostListener("window:resize", ["$event"])
   updateLineStyles(): void {
     this.pocketInvitation.folds.forEach(fold => {
@@ -64,6 +81,19 @@ export class PocketInvitationCanvasComponent {
     this.pocketInvitation.pocketLines.forEach(pocketLine => {
       this.lineStyles(pocketLine);
     });
+  }
+
+  private _invitationColorHexCode(): string {
+    return `#${this._invitationColor().hexCode}`;
+  }
+
+  private _invitationColor(): Color {
+    if (this.pocketInvitation.color === undefined) {
+      return Color.defaultInvitationColor();
+    } else {
+      console.log(`invitation color: ${JSON.stringify(this.pocketInvitation.color)}`);
+      return this.pocketInvitation.color;
+    }
   }
 
   private _relativePocketInvitationHeight(): string {

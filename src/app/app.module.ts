@@ -3,6 +3,8 @@ import { HttpModule } from "@angular/http";
 
 import { BrowserModule } from "@angular/platform-browser";
 
+import { InviteBuilderRoutingModule } from "./app-routing.module";
+
 import { AppComponent } from "./app-component/app.component";
 
 import { AboutComponent } from "./canvas-components/about/about.component";
@@ -31,7 +33,8 @@ import { SixmkApiService } from "./services/sixmk-api.service";
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    InviteBuilderRoutingModule
   ],
   providers: [
     SixmkApiService

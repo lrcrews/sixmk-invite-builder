@@ -37,7 +37,7 @@ export class Color {
 
   static defaultInvitationColor(): Color {
     return new Color(
-      true, true, true, true, 100, 270, "#685b5d", "75", false, false, "Dark Grey", "C:67 M:55 Y:44 K:20"
+      true, true, true, true, 100, 270, "685b5d", "75", false, false, "Dark Grey", "C:67 M:55 Y:44 K:20"
     );
   }
 
