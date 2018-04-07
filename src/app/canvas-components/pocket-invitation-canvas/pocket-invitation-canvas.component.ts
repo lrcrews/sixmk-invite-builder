@@ -91,7 +91,6 @@ export class PocketInvitationCanvasComponent {
     if (this.pocketInvitation.color === undefined) {
       return Color.defaultInvitationColor();
     } else {
-      console.log(`invitation color: ${JSON.stringify(this.pocketInvitation.color)}`);
       return this.pocketInvitation.color;
     }
   }

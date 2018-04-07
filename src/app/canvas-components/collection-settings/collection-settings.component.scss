@@ -32,4 +32,14 @@ section.collection-settings-component {
       }
     }
   }
+
+  > ul {
+    padding: 16px;
+    width: calc($collection-settings-width - 32px);
+
+    > li {
+      margin-bottom: 12px;
+      width: 100%;
+    }
+  }
 }

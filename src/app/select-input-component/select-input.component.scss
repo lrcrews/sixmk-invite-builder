@@ -1,0 +1,128 @@
+@import "../../assets/stylesheets/mixins/mixins.scss";
+
+section.select-input-component {
+  width: inherit;
+
+  > header {
+    color: $font-gray;
+
+    @include small-font-style;
+  }
+
+  > section {
+    height: 40px;
+    position: relative;
+    width: 100%;
+
+    > input {
+      border: 0;
+      height: 0;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 0;
+
+      &:focus {
+        box-shadow: none;
+        outline: none;
+      }
+    }
+
+    > div,
+    > ul {
+      background-color: #ffffff;
+      border-radius: 3px;
+    }
+
+    > div {
+      border: 1px solid $border-light-gray;
+      cursor: pointer;
+      height: 40px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      &:hover {
+        border: 1px solid $border-dark-gray;
+      }
+
+      &.focused {
+        border: 1px solid $border-brand;
+      }
+
+      > span,
+      > i {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      > span {
+        color: $font-black;
+        padding: 8px 12px;
+
+        @include normal-font-style;
+      }
+
+      > i {
+        color: $border-dark-gray;
+        float: right;
+        font-size: 12px;
+        margin: 14px 14px 0 0;
+      }
+    }
+
+    > ul {
+      box-shadow: 0 1px 2px rgba(42, 42, 42, 0.5);
+      height: 200px;
+      overflow-y: auto;
+      position: absolute;
+      top: 42px;
+      width: calc(100% + 2px);
+      z-index: 100;
+
+      -moz-transition: height 0.2s ease-in-out;
+      -o-transition: height 0.2s ease-in-out;
+      -webkit-transition: height 0.2s ease-in-out;
+      transition: height 0.2s ease-in-out;
+
+      &.hidden {
+        box-shadow: none;
+        height: 0;
+        overflow: hidden;
+      }
+
+      > li {
+        height: 40px;
+
+        &:hover {
+          background-color: $background-page;
+        }
+
+        &.selected {
+          background-color: $border-light-gray;
+        }
+
+        > span,
+        > i {
+          cursor: default;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        > span {
+          color: $font-black;
+          padding: 8px 12px;
+
+          @include normal-font-style;
+        }
+
+        > i {
+          color: $font-brand;
+          float: right;
+          font-size: 12px;
+          margin: 14px 14px 0 0;
+        }
+      }
+    }
+  }
+}

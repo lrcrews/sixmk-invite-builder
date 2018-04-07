@@ -1,0 +1,31 @@
+<section class="select-input-component">
+  <header>
+    {{ label }}
+  </header>
+  <section>
+    <!-- hidden input to allow for keyboard access to custom select UI -->
+    <input type="text" (focus)="showOptions()">
+    <!-- "closed"/"selected" UI -->
+    <div [ngClass]="{ focused: optionsVisible }" (click)="toggleOptions()">
+      <span>{{ selectedOptionDisplayText() }}</span>
+      <i *ngIf="!optionsVisible" class="fas fa-angle-down"></i>
+      <i *ngIf="optionsVisible" class="fas fa-angle-up"></i>
+    </div>
+    <!-- "expanded" options UI -->
+    <ul [ngClass]="{ hidden: !optionsVisible }">
+      <li *ngFor="let option of options; let i = index"
+          tabindex="0"    
+          [attr.id]="optionIdForIndex(i)"
+          [ngClass]="{ selected: optionSelected(option) }"
+          (click)="selectOption(option)"
+          (keyup.enter)="selectOption(option)"
+          (keyup.ArrowDown)="focusOption(i + 1)"
+          (keyup.ArrowUp)="focusOption(i - 1)">
+        <span>
+          {{ option.displayName }}
+        </span>
+        <i *ngIf="optionSelected(option)" class="fas fa-check"></i>
+      </li>
+    </ul>
+  </section>
+</section>

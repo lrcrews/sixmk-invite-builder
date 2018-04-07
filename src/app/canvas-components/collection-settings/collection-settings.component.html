@@ -1,9 +1,38 @@
 <section class="collection-settings-component">
   <header>
-    COLLECTION
+    Invitation Settings
     <div tabindex="0" (click)="hide()" (keyup.enter)="hide()">
       <i class="far fa-arrow-alt-circle-left"></i>
     </div>
   </header>
+  <ul>
+    <li>
+      <app-select-input
+        [label]="'TYPE'"
+        [options]="colorOptions()"
+        [selectedOption]="selectedColorOption()"
+        [model]="selectedColor"
+        (modelChange)="colorOptionChanged($event)">
+      </app-select-input>
+    </li>
+    <li>
+      <app-select-input
+        [label]="'STYLE'"
+        [options]="colorOptions()"
+        [selectedOption]="selectedColorOption()"
+        [model]="selectedColor"
+        (modelChange)="colorOptionChanged($event)">
+      </app-select-input>
+    </li>
+    <li>
+      <app-select-input
+        [label]="'COLOR'"
+        [options]="colorOptions()"
+        [selectedOption]="selectedColorOption()"
+        [model]="selectedColor"
+        (modelChange)="colorOptionChanged($event)">
+      </app-select-input>
+    </li>
+  </ul>
 </section>
   

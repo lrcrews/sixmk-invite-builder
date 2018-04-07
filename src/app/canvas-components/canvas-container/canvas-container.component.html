@@ -3,6 +3,9 @@
   <!-- Collection UI -->
   <div [ngClass]="{ 'off-screen': !tileVisible('collectionSettings'), 'collection-settings': true }">
     <app-collection-settings
+      [availableColors]="colors"
+      [selectedColor]="selectedInvitationColor"
+      (onColorUpdated)="updateSelectedColor($event)"
       (onHideClicked)="hideTile('collectionSettings')">
     </app-collection-settings>
   </div>
