@@ -1,13 +1,13 @@
 export class Color {
 
   static fromJsonArray(jsonArray: Array<any>): Array<Color> {
-    const colors: Array<Color> = [];
     if (jsonArray) {
-      for (const colorJson of jsonArray) {
-        colors.push(Color.fromJson(colorJson));
-      }
+      return jsonArray.map( json => {
+        return Color.fromJson(json);
+      });
+    } else {
+      return [];
     }
-    return colors;
   }
 
   static fromJson(json: any): Color {

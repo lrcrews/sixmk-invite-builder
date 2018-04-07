@@ -26,6 +26,10 @@
       ],
       "heightInInches":7,
       "id":"1",
+      "invitationType":{
+        "id":"1",
+        "name":"Pocket Invitation"
+      },
       "name":"Signature",
       "outlinePoints":[
         {

@@ -1,8 +1,8 @@
 import { Component, ElementRef, HostListener, Input, ViewChild } from "@angular/core";
 
 import { Color } from "../../models/color";
+import { Invitation } from "../../models/invitation";
 import { Line } from "../../models/line";
-import { PocketInvitation } from "../../models/pocket-invitation";
 import { Point } from "../../models/point";
 
 @Component({
@@ -13,7 +13,7 @@ import { Point } from "../../models/point";
 
 export class PocketInvitationCanvasComponent {
 
-  @Input() pocketInvitation: PocketInvitation;
+  @Input() pocketInvitation: Invitation;
 
   @ViewChild("containerDiv") containerDiv: ElementRef;
 

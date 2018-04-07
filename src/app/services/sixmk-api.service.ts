@@ -7,7 +7,8 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 
 import { Color } from "../models/color";
-import { PocketInvitation } from "../models/pocket-invitation";
+import { Invitation } from "../models/invitation";
+import { InvitationType } from "../models/invitation-type";
 
 @Injectable()
 export class SixmkApiService {
@@ -19,17 +20,26 @@ export class SixmkApiService {
     return this.http.get(url).map(this._onColorsResponse);
   }
 
-  pocketInvitations(): Observable<Array<PocketInvitation>> {
-    const url = this._mockPocketInvitationsJsonPath();
-    return this.http.get(url).map(this._onPocketInvitationsResponse);
+  invitations(): Observable<Array<Invitation>> {
+    const url = this._mockInvitationsJsonPath();
+    return this.http.get(url).map(this._onInvitationsResponse);
+  }
+
+  invitationTypes(): Observable<Array<InvitationType>> {
+    const url = this._mockInvitationTypesJsonPath();
+    return this.http.get(url).map(this._onInvitationTypesResponse);
   }
 
   private _mockColorsJsonPath(): string {
     return "../../assets/colors-response.json";
   }
 
-  private _mockPocketInvitationsJsonPath(): string {
-    return "../../assets/pocket-invitations-response.json";
+  private _mockInvitationsJsonPath(): string {
+    return "../../assets/invitations-response.json";
+  }
+
+  private _mockInvitationTypesJsonPath(): string {
+    return "../../assets/invitation-types-response.json";
   }
 
   private _onColorsResponse(response: Response): Array<Color> {
@@ -41,10 +51,19 @@ export class SixmkApiService {
     }
   }
 
-  private _onPocketInvitationsResponse(response: Response): Array<PocketInvitation> {
+  private _onInvitationsResponse(response: Response): Array<Invitation> {
     const json = response.json();
     if (json) {
-      return PocketInvitation.fromJsonArray(json["invitations"]);
+      return Invitation.fromJsonArray(json["invitations"]);
+    } else {
+      return [];
+    }
+  }
+
+  private _onInvitationTypesResponse(response: Response): Array<InvitationType> {
+    const json = response.json();
+    if (json) {
+      return InvitationType.fromJsonArray(json["invitationTypes"]);
     } else {
       return [];
     }

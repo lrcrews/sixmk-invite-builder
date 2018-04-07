@@ -8,13 +8,13 @@
 export class Point {
 
   static fromJsonArray(jsonArray: Array<any>): Array<Point> {
-    const points: Array<Point> = [];
     if (jsonArray) {
-      for (const pointJson of jsonArray) {
-        points.push(Point.fromJson(pointJson));
-      }
+      return jsonArray.map( json => {
+        return Point.fromJson(json);
+      });
+    } else {
+      return [];
     }
-    return points;
   }
 
   static fromJson(json: any): Point {

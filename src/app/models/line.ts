@@ -9,13 +9,13 @@ import { Point } from "./point";
 export class Line {
 
   static fromJsonArray(jsonArray: Array<any>): Array<Line> {
-    const lines: Array<Line> = [];
     if (jsonArray) {
-      for (const lineJson of jsonArray) {
-        lines.push(Line.fromJson(lineJson));
-      }
+      return jsonArray.map( json => {
+        return Line.fromJson(json);
+      });
+    } else {
+      return [];
     }
-    return lines;
   }
 
   static fromJson(json: any): Line {

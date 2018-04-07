@@ -1,23 +1,24 @@
 import { TestBed } from "@angular/core/testing";
 
 import { Color } from "../color";
+import { Invitation } from "../invitation";
+import { InvitationType } from "../invitation-type";
 import { Line } from "../line";
-import { PocketInvitation } from "../pocket-invitation";
 import { Point } from "../point";
 
-describe("PocketInvitation", () => {
+describe("Invitation", () => {
 
   describe("fromJsonArray", () => {
 
     it("should return an empty array if no json is given", () => {
-      expect(PocketInvitation.fromJsonArray(undefined)).toEqual([]);
-      expect(PocketInvitation.fromJsonArray(null)).toEqual([]);
+      expect(Invitation.fromJsonArray(undefined)).toEqual([]);
+      expect(Invitation.fromJsonArray(null)).toEqual([]);
     });
 
     it("should call 'fromJson' for each element in the jsonArray", () => {
-      spyOn(PocketInvitation, "fromJson");
-      PocketInvitation.fromJsonArray([{}, {}]);
-      expect(PocketInvitation.fromJson).toHaveBeenCalledTimes(2);
+      spyOn(Invitation, "fromJson");
+      Invitation.fromJsonArray([{}, {}]);
+      expect(Invitation.fromJson).toHaveBeenCalledTimes(2);
     });
 
   });
@@ -25,11 +26,11 @@ describe("PocketInvitation", () => {
   describe("fromJson", () => {
 
     it("should return undefined if no json is given", () => {
-      expect(PocketInvitation.fromJson(undefined)).toEqual(undefined);
-      expect(PocketInvitation.fromJson(null)).toEqual(undefined);
+      expect(Invitation.fromJson(undefined)).toEqual(undefined);
+      expect(Invitation.fromJson(null)).toEqual(undefined);
     });
 
-    it("should return a PocketInvitation instance for the given json", () => {
+    it("should return an Invitation instance for the given json", () => {
       const json = {
         foldLines: [
           {
@@ -55,6 +56,10 @@ describe("PocketInvitation", () => {
         ],
         heightInInches: 7,
         id: "1",
+        invitationType: {
+          id: "1",
+          name: "Pocket Invitation"
+        },
         name: "Signature",
         outlinePoints: [
           {
@@ -102,11 +107,12 @@ describe("PocketInvitation", () => {
         ],
         widthInInches: 11.49
       };
-      const invitation = PocketInvitation.fromJson(json);
+      const invitation = Invitation.fromJson(json);
       expect(invitation.color).toBeUndefined();
       expect(invitation.folds.length).toEqual(2);
       expect(invitation.height).toEqual(7);
       expect(invitation.id).toEqual("1");
+      expect(invitation.invitationType.id).toEqual("1");
       expect(invitation.name).toEqual("Signature");
       expect(invitation.outline.length).toEqual(5);
       expect(invitation.pocketLines.length).toEqual(2);
@@ -117,12 +123,13 @@ describe("PocketInvitation", () => {
 
   describe("emptyInstance", () => {
 
-    it("should return a PocketInvitation instance with empty values", () => {
-      const invitation = PocketInvitation.emptyInstance();
+    it("should return an Invitation instance with empty values", () => {
+      const invitation = Invitation.emptyInstance();
       expect(invitation.color).toEqual(Color.emptyInstance());
       expect(invitation.folds).toEqual([]);
       expect(invitation.height).toEqual(0);
       expect(invitation.id).toEqual("");
+      expect(invitation.invitationType).toEqual(InvitationType.emptyInstance());
       expect(invitation.name).toEqual("");
       expect(invitation.outline).toEqual([]);
       expect(invitation.pocketLines).toEqual([]);

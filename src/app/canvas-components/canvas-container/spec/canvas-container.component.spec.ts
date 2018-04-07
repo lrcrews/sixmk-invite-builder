@@ -11,7 +11,8 @@ import "rxjs/add/observable/of";
 
 import { CanvasContainerComponent } from "../canvas-container.component";
 import { Color } from "../../../models/color";
-import { PocketInvitation } from "../../../models/pocket-invitation";
+import { Invitation } from "../../../models/invitation";
+import { InvitationType } from "../../../models/invitation-type";
 import { SixmkApiService } from "../../../services/sixmk-api.service";
 
 // api is tested in its own spec, so mock it out here.
@@ -20,8 +21,12 @@ class MockApiService {
     return Observable.of([Color.defaultInvitationColor()]);
   }
 
-  pocketInvitations(): Observable<Array<PocketInvitation>> {
-    return Observable.of([PocketInvitation.emptyInstance()]);
+  invitations(): Observable<Array<Invitation>> {
+    return Observable.of([Invitation.emptyInstance()]);
+  }
+
+  invitationTypes(): Observable<Array<InvitationType>> {
+    return Observable.of([InvitationType.emptyInstance()]);
   }
 }
 
@@ -61,7 +66,8 @@ describe("CanvasContainerComponent", () => {
 
     it("should load the pocket invitations data", async(() => {
       component.ngOnInit();
-      expect(component.pocketInvitations).toBeDefined();
+      expect(component.invitations).toBeDefined();
+      expect(component.invitationTypes).toBeDefined();
       expect(component.selectedInvitation).toBeDefined();
     }));
 

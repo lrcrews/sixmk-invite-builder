@@ -30,11 +30,21 @@ describe("SixmkApiService", () => {
 
   });
 
-  describe("pocketInvitations", () => {
+  describe("invitations", () => {
 
-    it("should return an array of PocketInvitations", inject([SixmkApiService], (service: SixmkApiService) => {
-      service.pocketInvitations().subscribe(invitations => {
+    it("should return an array of Invitations", inject([SixmkApiService], (service: SixmkApiService) => {
+      service.invitations().subscribe(invitations => {
         expect(invitations).toBeDefined();
+      });
+    }));
+
+  });
+
+  describe("invitationTypes", () => {
+
+    it("should return an array of InvitationTypes", inject([SixmkApiService], (service: SixmkApiService) => {
+      service.invitationTypes().subscribe(invitationTypes => {
+        expect(invitationTypes).toBeDefined();
       });
     }));
 

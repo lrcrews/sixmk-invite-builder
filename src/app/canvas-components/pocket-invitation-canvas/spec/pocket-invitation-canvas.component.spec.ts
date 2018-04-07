@@ -1,12 +1,13 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { Color } from "../../../models/color";
+import { Invitation } from "../../../models/invitation";
+import { InvitationType } from "../../../models/invitation-type";
 import { Line } from "../../../models/line";
-import { PocketInvitation } from "../../../models/pocket-invitation";
 import { PocketInvitationCanvasComponent } from "../pocket-invitation-canvas.component";
 import { Point } from "../../../models/point";
 
-const pocketInvitationMock = new PocketInvitation(
+const pocketInvitationMock = new Invitation(
   new Color(true, true, true, true, 100, 100, "dc0062", "id1", false, false, "hotness", "foobar"),
   [
     new Line( new Point(21.76, 100), new Point(21.76, 0) ),
@@ -14,6 +15,7 @@ const pocketInvitationMock = new PocketInvitation(
   ],
   7,
   "1",
+  new InvitationType("1", "Pocket Invitation"),
   "Signature",
   [
     new Point(0, 50),
@@ -58,7 +60,7 @@ describe("PocketInvitationCanvasComponent", () => {
     });
 
     it("should return a hash with 'height' property that is the relative heigt percentage", () => {
-      component.pocketInvitation = new PocketInvitation(undefined, [], 7, "id1", "name1", [], [], 11.49);
+      component.pocketInvitation = new Invitation(undefined, [], 7, "id1", undefined, "name1", [], [], 11.49);
       // x = (height / width) * 100
       // x = (7 / 11.49) * 100
       // x = (0.60922) * 100

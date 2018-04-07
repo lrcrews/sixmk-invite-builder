@@ -8,8 +8,9 @@ import { Subscription } from "rxjs/Subscription";
 import "rxjs/add/observable/forkJoin";
 
 import { Color } from "../../models/color";
+import { Invitation } from "../../models/invitation";
+import { InvitationType } from "../../models/invitation-type";
 import { Line } from "../../models/line";
-import { PocketInvitation } from "../../models/pocket-invitation";
 import { Point } from "../../models/point";
 import { SixmkApiService } from "../../services/sixmk-api.service";
 
@@ -21,12 +22,15 @@ import { SixmkApiService } from "../../services/sixmk-api.service";
 export class CanvasContainerComponent implements OnDestroy, OnInit {
   static PARAM_INVITATION_COLOR_ID = "icid";
   static PARAM_INVITATION_ID = "iid";
+  static PARAM_INVITATION_TYPE_ID = "itid";
 
   colors: Array<Color>;
-  pocketInvitations: Array<PocketInvitation>;
+  invitations: Array<Invitation>;
+  invitationTypes: Array<InvitationType>;
 
-  selectedInvitation: PocketInvitation;
+  selectedInvitation: Invitation;
   selectedInvitationColor = Color.defaultInvitationColor();
+  selectedInvitationType: InvitationType;
 
   tileVisibilities = {
     about: false,
@@ -67,29 +71,6 @@ export class CanvasContainerComponent implements OnDestroy, OnInit {
     }
   }
 
-  private _loadData(): void {
-    Observable.forkJoin(
-      this._sixmkApiService.colors(),
-      this._sixmkApiService.pocketInvitations()
-    ).subscribe( ([ colors, invitations ]) => {
-      this.colors = colors;
-      this.pocketInvitations = invitations;
-      this._watchRouteParams();
-    });
-  }
-
-  private _watchRouteParams(): void {
-    this._routeSubscription = this._route.queryParams.subscribe( params => {
-      this._queryParams = Object.assign({}, params);
-      this._updateSelectedInvitationById(
-        `${params[ CanvasContainerComponent.PARAM_INVITATION_ID ]}`
-      );
-      this._updateSelectedInvitationColorById(
-        `${params[ CanvasContainerComponent.PARAM_INVITATION_COLOR_ID ]}`
-      );
-    });
-  }
-
   private _updateParamKeyWithValue(key: string, value: string): void {
     this._queryParams[key] = value;
     this._router.navigate([], { relativeTo: this._route, queryParams: this._queryParams });
@@ -101,12 +82,40 @@ export class CanvasContainerComponent implements OnDestroy, OnInit {
     }
   }
 
+  private _loadData(): void {
+    Observable.forkJoin(
+      this._sixmkApiService.colors(),
+      this._sixmkApiService.invitationTypes(),
+      this._sixmkApiService.invitations()
+    ).subscribe( ([ colors, invitationTypes, invitations ]) => {
+      this.colors = colors;
+      this.invitationTypes = invitationTypes;
+      this.invitations = invitations;
+      this._watchRouteParams();
+    });
+  }
+
+  private _watchRouteParams(): void {
+    this._routeSubscription = this._route.queryParams.subscribe( params => {
+      this._queryParams = Object.assign({}, params);
+      this._updateSelectedInvitationTypeById(
+        `${params[ CanvasContainerComponent.PARAM_INVITATION_TYPE_ID ]}`
+      );
+      this._updateSelectedInvitationById(
+        `${params[ CanvasContainerComponent.PARAM_INVITATION_ID ]}`
+      );
+      this._updateSelectedInvitationColorById(
+        `${params[ CanvasContainerComponent.PARAM_INVITATION_COLOR_ID ]}`
+      );
+    });
+  }
+
   private _updateSelectedInvitationById(id: string): void {
-    this.selectedInvitation = this.pocketInvitations.find( invitation => {
+    this.selectedInvitation = this.invitations.find( invitation => {
       return invitation.id === id;
     });
     if (this.selectedInvitation === undefined) {
-      this.selectedInvitation = this.pocketInvitations[0];
+      this.selectedInvitation = this.invitations[0];
     }
     this.selectedInvitation.color = this.selectedInvitationColor;
   }
@@ -119,6 +128,15 @@ export class CanvasContainerComponent implements OnDestroy, OnInit {
       this.selectedInvitationColor = Color.defaultInvitationColor();
     }
     this.selectedInvitation.color = this.selectedInvitationColor;
+  }
+
+  private _updateSelectedInvitationTypeById(id: string): void {
+    this.selectedInvitationType = this.invitationTypes.find( invitationType => {
+      return invitationType.id === id;
+    });
+    if (this.selectedInvitationType === undefined) {
+      this.selectedInvitationType = this.invitationTypes[0];
+    }
   }
 
 }
