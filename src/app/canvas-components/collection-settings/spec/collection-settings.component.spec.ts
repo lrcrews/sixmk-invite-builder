@@ -4,9 +4,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { CollectionSettingsComponent } from "../collection-settings.component";
 import { Color } from "../../../models/color";
-import { Option } from "../../../models/option";
 import { Invitation } from "../../../models/invitation";
 import { InvitationType } from "../../../models/invitation-type";
+import { Option } from "../../../models/option";
 
 describe("CollectionSettingsComponent", () => {
   let component: CollectionSettingsComponent;

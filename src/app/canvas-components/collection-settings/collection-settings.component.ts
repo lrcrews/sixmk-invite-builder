@@ -121,6 +121,7 @@ export class CollectionSettingsComponent {
   }
 
   invitationTypeOptionChanged(invitationType: InvitationType): void {
+    this._invitationOptions = undefined;
     this.selectedInvitationType = invitationType;
     this.onInvitationTypeUpdated.emit(this.selectedInvitationType);
   }

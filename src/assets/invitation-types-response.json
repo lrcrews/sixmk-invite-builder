@@ -3,6 +3,14 @@
     {
       "id":"1",
       "name":"Pocket Invitation"
+    },
+    {
+      "id":"2",
+      "name":"Gate Cards"
+    },
+    {
+      "id":"3",
+      "name":"Panel Cards"
     }
   ]
 }
