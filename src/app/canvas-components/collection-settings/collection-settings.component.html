@@ -9,19 +9,19 @@
     <li>
       <app-select-input
         [label]="'TYPE'"
-        [options]="colorOptions()"
-        [selectedOption]="selectedColorOption()"
-        [model]="selectedColor"
-        (modelChange)="colorOptionChanged($event)">
+        [options]="invitationTypeOptions()"
+        [selectedOption]="selectedInvitationTypeOption()"
+        [model]="selectedInvitationType"
+        (modelChange)="invitationTypeOptionChanged($event)">
       </app-select-input>
     </li>
     <li>
       <app-select-input
         [label]="'STYLE'"
-        [options]="colorOptions()"
-        [selectedOption]="selectedColorOption()"
-        [model]="selectedColor"
-        (modelChange)="colorOptionChanged($event)">
+        [options]="invitationOptions()"
+        [selectedOption]="selectedInvitationOption()"
+        [model]="selectedInvitation"
+        (modelChange)="invitationOptionChanged($event)">
       </app-select-input>
     </li>
     <li>

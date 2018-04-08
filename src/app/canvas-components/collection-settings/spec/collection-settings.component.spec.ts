@@ -5,6 +5,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CollectionSettingsComponent } from "../collection-settings.component";
 import { Color } from "../../../models/color";
 import { Option } from "../../../models/option";
+import { Invitation } from "../../../models/invitation";
+import { InvitationType } from "../../../models/invitation-type";
 
 describe("CollectionSettingsComponent", () => {
   let component: CollectionSettingsComponent;
@@ -118,6 +120,176 @@ describe("CollectionSettingsComponent", () => {
       component.colorOptionChanged(color1);
       expect(component.selectedColor).toEqual(color1);
       expect(component.onColorUpdated.emit).toHaveBeenCalledWith(color1);
+    });
+
+  });
+
+  describe("invitationOptions", () => {
+
+    it("should return an empty array if availableInvitations is undefined", () => {
+      component.availableInvitations = undefined;
+      expect(component.invitationOptions()).toEqual([]);
+    });
+
+    it("should return an array of Option(s) based on the availableInvitations", () => {
+      const invitation1 = Invitation.emptyInstance();
+      invitation1.id = "123";
+      invitation1.name = "Invitation One";
+      const invitation2 = Invitation.emptyInstance();
+      invitation2.id = "abc";
+      invitation2.name = "Invitation Two";
+      component.availableInvitations = [ invitation1, invitation2 ];
+      expect(component.invitationOptions()).toEqual([
+        new Option("Invitation One", invitation1),
+        new Option("Invitation Two", invitation2)
+      ]);
+      // ...and it should load the same results from the cached version after the first pass
+      expect(component.invitationOptions()).toEqual([
+        new Option("Invitation One", invitation1),
+        new Option("Invitation Two", invitation2)
+      ]);
+    });
+
+  });
+
+  describe("selectedInvitationOption", () => {
+
+    it("should return undefined if selectedInvitation is undefined", () => {
+      component.selectedInvitation = undefined;
+      expect(component.selectedInvitationOption()).toBeUndefined();
+    });
+
+    it("should return undefined is selectedInvitation is present but availableInvitations is undefined", () => {
+      component.selectedInvitation = Invitation.emptyInstance();
+      component.availableInvitations = undefined;
+      expect(component.selectedInvitationOption()).toBeUndefined();
+    });
+
+    it("should return undefined is selectedInvitation and availableInvitations are present," +
+       "but invitation options isn't", () => {
+      component.selectedInvitation = Invitation.emptyInstance();
+      component.availableInvitations = [];
+      expect(component.selectedInvitationOption()).toBeUndefined();
+    });
+
+    it("should return undefined if selectedInvitation is not found", () => {
+      component.selectedInvitation = Invitation.emptyInstance();
+      component.availableInvitations = [];
+      component.invitationOptions();
+      expect(component.selectedInvitationOption()).toBeUndefined();
+    });
+
+    it("should return the Option corresponding to the selectedInvitation", () => {
+      const invitation1 = Invitation.emptyInstance();
+      invitation1.id = "123";
+      invitation1.name = "Invitation One";
+      const invitation2 = Invitation.emptyInstance();
+      invitation2.id = "abc";
+      invitation2.name = "Invitation Two";
+      component.selectedInvitation = invitation2;
+      component.availableInvitations = [ invitation1, invitation2 ];
+      component.invitationOptions();
+      expect(component.selectedInvitationOption()).toEqual(new Option("Invitation Two", invitation2));
+    });
+
+  });
+
+  describe("invitationOptionChanged", () => {
+
+    it("should set selectedInvitations to the given invitation and emit onInvitationUpdated", () => {
+      this.selectedInvitation = Invitation.emptyInstance();
+      spyOn(component.onInvitationUpdated, "emit");
+      const invitation1 = Invitation.emptyInstance();
+      invitation1.id = "123";
+      invitation1.name = "Invitation One";
+      component.invitationOptionChanged(invitation1);
+      expect(component.selectedInvitation).toEqual(invitation1);
+      expect(component.onInvitationUpdated.emit).toHaveBeenCalledWith(invitation1);
+    });
+
+  });
+
+  describe("invitationTypeOptions", () => {
+
+    it("should return an empty array if availableInvitationTypes is undefined", () => {
+      component.availableInvitationTypes = undefined;
+      expect(component.invitationTypeOptions()).toEqual([]);
+    });
+
+    it("should return an array of Option(s) based on the availableInvitationTypes", () => {
+      const invitationType1 = InvitationType.emptyInstance();
+      invitationType1.id = "123";
+      invitationType1.name = "Invitation Type One";
+      const invitationType2 = InvitationType.emptyInstance();
+      invitationType2.id = "abc";
+      invitationType2.name = "Invitation Type Two";
+      component.availableInvitationTypes = [ invitationType1, invitationType2 ];
+      expect(component.invitationTypeOptions()).toEqual([
+        new Option("Invitation Type One", invitationType1),
+        new Option("Invitation Type Two", invitationType2)
+      ]);
+      // ...and it should load the same results from the cached version after the first pass
+      expect(component.invitationTypeOptions()).toEqual([
+        new Option("Invitation Type One", invitationType1),
+        new Option("Invitation Type Two", invitationType2)
+      ]);
+    });
+
+  });
+
+  describe("selectedInvitationTypeOption", () => {
+
+    it("should return undefined if selectedInvitationType is undefined", () => {
+      component.selectedInvitationType = undefined;
+      expect(component.selectedInvitationTypeOption()).toBeUndefined();
+    });
+
+    it("should return undefined is selectedInvitationType is present but availableInvitationTypes is undefined", () => {
+      component.selectedInvitationType = InvitationType.emptyInstance();
+      component.availableInvitationTypes = undefined;
+      expect(component.selectedInvitationTypeOption()).toBeUndefined();
+    });
+
+    it("should return undefined is selectedInvitationType and availableInvitationTypes are present," +
+       "but invitation options isn't", () => {
+      component.selectedInvitationType = InvitationType.emptyInstance();
+      component.availableInvitationTypes = [];
+      expect(component.selectedInvitationTypeOption()).toBeUndefined();
+    });
+
+    it("should return undefined if selectedInvitationType is not found", () => {
+      component.selectedInvitationType = InvitationType.emptyInstance();
+      component.availableInvitationTypes = [];
+      component.invitationTypeOptions();
+      expect(component.selectedInvitationTypeOption()).toBeUndefined();
+    });
+
+    it("should return the Option corresponding to the selectedInvitationType", () => {
+      const invitationType1 = InvitationType.emptyInstance();
+      invitationType1.id = "123";
+      invitationType1.name = "Invitation Type One";
+      const invitationType2 = InvitationType.emptyInstance();
+      invitationType2.id = "abc";
+      invitationType2.name = "Invitation Type Two";
+      component.selectedInvitationType = invitationType2;
+      component.availableInvitationTypes = [ invitationType1, invitationType2 ];
+      component.invitationTypeOptions();
+      expect(component.selectedInvitationTypeOption()).toEqual(new Option("Invitation Type Two", invitationType2));
+    });
+
+  });
+
+  describe("invitationTypeOptionChanged", () => {
+
+    it("should set selectedInvitationTypes to the given invitation and emit onInvitationTypeUpdated", () => {
+      this.selectedInvitationType = InvitationType.emptyInstance();
+      spyOn(component.onInvitationTypeUpdated, "emit");
+      const invitationType1 = InvitationType.emptyInstance();
+      invitationType1.id = "123";
+      invitationType1.name = "Invitation Type One";
+      component.invitationTypeOptionChanged(invitationType1);
+      expect(component.selectedInvitationType).toEqual(invitationType1);
+      expect(component.onInvitationTypeUpdated.emit).toHaveBeenCalledWith(invitationType1);
     });
 
   });

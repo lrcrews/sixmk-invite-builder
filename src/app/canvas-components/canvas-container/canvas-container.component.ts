@@ -65,9 +65,31 @@ export class CanvasContainerComponent implements OnDestroy, OnInit {
     return this.tileVisibilities[key] === true;
   }
 
+  invitationsForType(invitationType: InvitationType): Array<Invitation> {
+    if (this.invitations) {
+      return this.invitations.filter( invitation => {
+        return invitation.invitationType.id === invitationType.id;
+      });
+    } else {
+      return [];
+    }
+  }
+
   updateSelectedColor(color: Color): void {
     if (this._queryParams !== undefined) {
       this._updateParamKeyWithValue(CanvasContainerComponent.PARAM_INVITATION_COLOR_ID, color.id);
+    }
+  }
+
+  updateSelectedInvitation(invitation: Invitation): void {
+    if (this._queryParams !== undefined) {
+      this._updateParamKeyWithValue(CanvasContainerComponent.PARAM_INVITATION_ID, invitation.id);
+    }
+  }
+
+  updateSelectedInvitationType(invitationType: InvitationType): void {
+    if (this._queryParams !== undefined) {
+      this._updateParamKeyWithValue(CanvasContainerComponent.PARAM_INVITATION_TYPE_ID, invitationType.id);
     }
   }
 
@@ -115,7 +137,7 @@ export class CanvasContainerComponent implements OnDestroy, OnInit {
       return invitation.id === id;
     });
     if (this.selectedInvitation === undefined) {
-      this.selectedInvitation = this.invitations[0];
+      this.selectedInvitation = this.invitationsForType(this.selectedInvitationType)[0];
     }
     this.selectedInvitation.color = this.selectedInvitationColor;
   }

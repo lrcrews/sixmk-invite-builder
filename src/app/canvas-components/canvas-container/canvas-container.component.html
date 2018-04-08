@@ -4,8 +4,14 @@
   <div [ngClass]="{ 'off-screen': !tileVisible('collectionSettings'), 'collection-settings': true }">
     <app-collection-settings
       [availableColors]="colors"
+      [availableInvitations]="invitationsForType(selectedInvitationType)"
+      [availableInvitationTypes]="invitationTypes"
       [selectedColor]="selectedInvitationColor"
+      [selectedInvitation]="selectedInvitation"
+      [selectedInvitationType]="selectedInvitationType"
       (onColorUpdated)="updateSelectedColor($event)"
+      (onInvitationUpdated)="updateSelectedInvitation($event)"
+      (onInvitationTypeUpdated)="updateSelectedInvitationType($event)"
       (onHideClicked)="hideTile('collectionSettings')">
     </app-collection-settings>
   </div>
