@@ -59,34 +59,21 @@ section.canvas-container-component {
         left: -48px;
       }
     }
-
-    &.layer-settings {
-      right: 20px;
-      top: 60px;
-      width: $layer-settings-width;
-
-      &.off-screen {
-        right: -$layer-settings-width;
-      }
-    }
-
-    &.show-layer-settings {
-      height: 40px;
-      right: 20px;
-      top: 60px;
-      width: 40px;
-
-      &.off-screen {
-        right: -48px;
-      }
-    }
   }
 
   > section {
-    height: 85vw;
     margin: 0 auto;
     max-height: 800px;
     max-width: 800px;
-    width: 85vw;
+    
+    @media (orientation: landscape) {
+      height: calc(100vh - 80px);
+      width: calc(100vh - 80px);
+    }
+
+    @media (orientation: portrait) {
+      height: calc(100vw - 20px);
+      width: calc(100vw - 20px);
+    }
   }
 }

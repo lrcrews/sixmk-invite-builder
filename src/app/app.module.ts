@@ -13,7 +13,6 @@ import { CollectionSettingsComponent } from "./canvas-components/collection-sett
 import { FooterComponent } from "./footer-component/footer.component";
 import { HeaderComponent } from "./header-component/header.component";
 import { InvitationCanvasComponent } from "./canvas-components/invitation-canvas/invitation-canvas.component";
-import { LayerSettingsComponent } from "./canvas-components/layer-settings/layer-settings.component";
 import { OffScreenTabComponent } from "./canvas-components/off-screen-tab/off-screen-tab.component";
 import { SelectInputComponent } from "./select-input-component/select-input.component";
 
@@ -29,7 +28,6 @@ import { SixmkApiService } from "./services/sixmk-api.service";
     FooterComponent,
     HeaderComponent,
     InvitationCanvasComponent,
-    LayerSettingsComponent,
     OffScreenTabComponent,
     SelectInputComponent
   ],

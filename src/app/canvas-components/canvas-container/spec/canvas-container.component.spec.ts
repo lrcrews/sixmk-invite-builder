@@ -76,7 +76,7 @@ describe("CanvasContainerComponent", () => {
   describe("hideTile", () => {
 
     it("should set the collection settings visibility varible to 'false' for the given key", () => {
-      component.tileVisibilities = { about: true, collectionSettings: true, layerSettings: true };
+      component.tileVisibilities = { about: true, collectionSettings: true };
       component.hideTile("about");
       expect(component.tileVisibilities.about).toBeFalsy();
       expect(component.tileVisibilities.collectionSettings).toBeTruthy();
@@ -89,7 +89,7 @@ describe("CanvasContainerComponent", () => {
   describe("showTile", () => {
 
     it("should set the collection settings visibility varible to 'true'", () => {
-      component.tileVisibilities = { about: false, collectionSettings: false, layerSettings: true };
+      component.tileVisibilities = { about: false, collectionSettings: false };
       component.showTile("about");
       expect(component.tileVisibilities.about).toBeTruthy();
       expect(component.tileVisibilities.collectionSettings).toBeFalsy();
@@ -102,7 +102,7 @@ describe("CanvasContainerComponent", () => {
   describe("tileVisible", () => {
 
     it("should return 'true' for a given key if that key's value is 'true', false otherwise", () => {
-      component.tileVisibilities = { about: true, collectionSettings: false, layerSettings: true };
+      component.tileVisibilities = { about: true, collectionSettings: false };
       expect(component.tileVisible("about")).toBeTruthy();
       expect(component.tileVisible("collectionSettings")).toBeFalsy();
     });

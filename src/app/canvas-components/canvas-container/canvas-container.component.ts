@@ -34,8 +34,7 @@ export class CanvasContainerComponent implements OnDestroy, OnInit {
 
   tileVisibilities = {
     about: false,
-    collectionSettings: true,
-    layerSettings: true
+    collectionSettings: true
   };
 
   private _queryParams;

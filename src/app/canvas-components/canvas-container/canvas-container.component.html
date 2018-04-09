@@ -17,21 +17,8 @@
   </div>
   <div [ngClass]="{ 'off-screen': tileVisible('collectionSettings'), 'show-collection-settings': true }">
     <app-off-screen-tab
-      [iconName]="'fa-arrow-alt-circle-right'"
+      [iconName]="'fas fa-cog'"
       (onShowClicked)="showTile('collectionSettings')">
-    </app-off-screen-tab>
-  </div>
-
-  <!-- Layer UI -->
-  <div [ngClass]="{ 'off-screen': !tileVisible('layerSettings'), 'layer-settings': true }">
-    <app-layer-settings
-      (onHideClicked)="hideTile('layerSettings')">
-    </app-layer-settings>
-  </div>
-  <div [ngClass]="{ 'off-screen': tileVisible('layerSettings'), 'show-layer-settings': true }">
-    <app-off-screen-tab
-      [iconName]="'fa-arrow-alt-circle-left'"
-      (onShowClicked)="showTile('layerSettings')">
     </app-off-screen-tab>
   </div>
 
@@ -43,7 +30,7 @@
   </div>
   <div [ngClass]="{ 'off-screen': tileVisible('about'), 'show-about': true }">
     <app-off-screen-tab
-      [iconName]="'fa-question-circle'"
+      [iconName]="'far fa-question-circle'"
       (onShowClicked)="showTile('about')">
     </app-off-screen-tab>
   </div>
