@@ -32,6 +32,9 @@
         [model]="selectedColor"
         (modelChange)="colorOptionChanged($event)">
       </app-select-input>
+      <div *ngIf="selectedColorIsMetallicOrTextured()">
+        * metallic/textured
+      </div>
     </li>
   </ul>
 </section>

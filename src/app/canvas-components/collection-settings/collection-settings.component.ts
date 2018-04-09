@@ -41,7 +41,7 @@ export class CollectionSettingsComponent {
     } else {
       if (this._colorOptions === undefined) {
         this._colorOptions = this.availableColors.map( color => {
-          return new Option(color.name, color);
+          return new Option(this._colorName(color), color);
         });
       }
       return this._colorOptions;
@@ -63,6 +63,10 @@ export class CollectionSettingsComponent {
   colorOptionChanged(color: Color): void {
     this.selectedColor = color;
     this.onColorUpdated.emit(this.selectedColor);
+  }
+
+  selectedColorIsMetallicOrTextured(): boolean {
+    return this.selectedColor ? this.selectedColor.isMetallic || this.selectedColor.isTextured : false;
   }
 
   invitationOptions(): Array<Option> {
@@ -124,6 +128,14 @@ export class CollectionSettingsComponent {
     this._invitationOptions = undefined;
     this.selectedInvitationType = invitationType;
     this.onInvitationTypeUpdated.emit(this.selectedInvitationType);
+  }
+
+  private _colorName(color: Color): string {
+    if (color.isMetallic || color.isTextured) {
+      return `${color.name} *`;
+    } else {
+      return color.name;
+    }
   }
 
 }

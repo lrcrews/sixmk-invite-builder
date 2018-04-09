@@ -40,6 +40,10 @@ section.collection-settings-component {
     > li {
       margin-bottom: 12px;
       width: 100%;
+
+      > div {
+        @include tiny-font-style;
+      }
     }
   }
 }

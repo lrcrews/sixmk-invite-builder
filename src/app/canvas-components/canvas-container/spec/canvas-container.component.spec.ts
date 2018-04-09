@@ -109,4 +109,66 @@ describe("CanvasContainerComponent", () => {
 
   });
 
+  describe("updateSelectedColor", () => {
+
+    it("should update the color id param with the id of the given Color", () => {
+      component.ngOnInit(); // sets the _queryParams variable
+      const color = Color.emptyInstance();
+      color.id = "123";
+      component.updateSelectedColor(color);
+      // all private variables, but running test to ensure no breakage
+    });
+
+    it("should do nothing if _queryParams has not been set", () => {
+      const color = Color.emptyInstance();
+      color.id = "123";
+      component.updateSelectedColor(color);
+      // all private variables, but running test to ensure no breakage
+    });
+
+  });
+
+  describe("updateSelectedInvitation", () => {
+
+    it("should update the invitation id param with the id of the given Invitation", () => {
+      component.ngOnInit(); // sets the _queryParams variable
+      const invitation = Invitation.emptyInstance();
+      invitation.id = "123";
+      component.updateSelectedInvitation(invitation);
+      // all private variables, but running test to ensure no breakage
+    });
+
+    it("should do nothing if _queryParams has not been set", () => {
+      const invitation = Invitation.emptyInstance();
+      invitation.id = "123";
+      component.updateSelectedInvitation(invitation);
+      // all private variables, but running test to ensure no breakage
+    });
+
+  });
+
+  describe("updateSelectedInvitationType", () => {
+
+    it("should update the invitation type id param with the id of the given InvitationType" +
+       "and set the invitation to the first one of the selected type", () => {
+      component.ngOnInit(); // sets the _queryParams variable
+      const invitationType = InvitationType.emptyInstance();
+      invitationType.id = "123";
+      const invitation = Invitation.emptyInstance();
+      invitation.id = "432";
+      invitation.invitationType = invitationType;
+      component.invitations = [ invitation ];
+      component.updateSelectedInvitationType(invitationType);
+      // all private variables, but running test to ensure no breakage
+    });
+
+    it("should do nothing if _queryParams has not been set", () => {
+      const invitationType = InvitationType.emptyInstance();
+      invitationType.id = "123";
+      component.updateSelectedInvitationType(invitationType);
+      // all private variables, but running test to ensure no breakage
+    });
+
+  });
+
 });

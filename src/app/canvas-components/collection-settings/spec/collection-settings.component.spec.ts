@@ -51,17 +51,18 @@ describe("CollectionSettingsComponent", () => {
       const color1 = Color.emptyInstance();
       color1.id = "123";
       color1.name = "Color One";
+      color1.isMetallic = true; // adds " *" to the name.
       const color2 = Color.emptyInstance();
       color2.id = "abc";
       color2.name = "Color Two";
       component.availableColors = [ color1, color2 ];
       expect(component.colorOptions()).toEqual([
-        new Option("Color One", color1),
+        new Option("Color One *", color1),
         new Option("Color Two", color2)
       ]);
       // ...and it should load the same results from the cached version after the first pass
       expect(component.colorOptions()).toEqual([
-        new Option("Color One", color1),
+        new Option("Color One *", color1),
         new Option("Color Two", color2)
       ]);
     });
@@ -120,6 +121,32 @@ describe("CollectionSettingsComponent", () => {
       component.colorOptionChanged(color1);
       expect(component.selectedColor).toEqual(color1);
       expect(component.onColorUpdated.emit).toHaveBeenCalledWith(color1);
+    });
+
+  });
+
+  describe("selectedColorIsMetallicOrTextured", () => {
+
+    it("should return true if the selectedColor is metallic", () => {
+      const color = Color.emptyInstance();
+      color.isMetallic = true;
+      component.selectedColor = color;
+      expect(component.selectedColorIsMetallicOrTextured()).toBeTruthy();
+    });
+
+    it("should return true if the selectedColor is textured", () => {
+      const color = Color.emptyInstance();
+      color.isTextured = true;
+      component.selectedColor = color;
+      expect(component.selectedColorIsMetallicOrTextured()).toBeTruthy();
+    });
+
+    it("should return false if the selectedColor is neither metallic nor textured", () => {
+      const color = Color.emptyInstance();
+      color.isMetallic = false;
+      color.isTextured = false;
+      component.selectedColor = color;
+      expect(component.selectedColorIsMetallicOrTextured()).toBeFalsy();
     });
 
   });
