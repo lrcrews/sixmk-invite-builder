@@ -6,29 +6,29 @@ import { Line } from "../../models/line";
 import { Point } from "../../models/point";
 
 @Component({
-  selector: "app-pocket-invitation-canvas",
-  styleUrls: [ "./pocket-invitation-canvas.component.scss" ],
-  templateUrl: "./pocket-invitation-canvas.component.html"
+  selector: "app-invitation-canvas",
+  styleUrls: [ "./invitation-canvas.component.scss" ],
+  templateUrl: "./invitation-canvas.component.html"
 })
 
-export class PocketInvitationCanvasComponent {
+export class InvitationCanvasComponent {
 
-  @Input() pocketInvitation: Invitation;
+  @Input() invitation: Invitation;
 
   @ViewChild("containerDiv") containerDiv: ElementRef;
 
   containerStyles(): {} {
-    if (this.pocketInvitation === undefined) {
+    if (this.invitation === undefined) {
       return {};
     } else {
       return {
-        height: this._relativePocketInvitationHeight()
+        height: this._relativeInvitationHeight()
       };
     }
   }
 
   outlineStyles(): {} {
-    if (this.pocketInvitation === undefined) {
+    if (this.invitation === undefined) {
       return {};
     } else {
       const polygonString = this._drawShape();
@@ -42,7 +42,7 @@ export class PocketInvitationCanvasComponent {
   }
 
   lineStyles(line: Line): {} {
-    if (this.pocketInvitation === undefined || line === undefined) {
+    if (this.invitation === undefined || line === undefined) {
       return {};
     } else {
       const angle = this._lineAngle(line.point1, line.point2);
@@ -58,27 +58,27 @@ export class PocketInvitationCanvasComponent {
   }
 
   folds(): Array<Line> {
-    if (this.pocketInvitation === undefined) {
+    if (this.invitation === undefined) {
       return [];
     } else {
-      return this.pocketInvitation.folds;
+      return this.invitation.folds;
     }
   }
 
   pocketLines(): Array<Line> {
-    if (this.pocketInvitation === undefined) {
+    if (this.invitation === undefined) {
       return [];
     } else {
-      return this.pocketInvitation.pocketLines;
+      return this.invitation.pocketLines;
     }
   }
 
   @HostListener("window:resize", ["$event"])
   updateLineStyles(): void {
-    this.pocketInvitation.folds.forEach(fold => {
+    this.invitation.folds.forEach(fold => {
       this.lineStyles(fold);
     });
-    this.pocketInvitation.pocketLines.forEach(pocketLine => {
+    this.invitation.pocketLines.forEach(pocketLine => {
       this.lineStyles(pocketLine);
     });
   }
@@ -88,22 +88,22 @@ export class PocketInvitationCanvasComponent {
   }
 
   private _invitationColor(): Color {
-    if (this.pocketInvitation.color === undefined) {
+    if (this.invitation.color === undefined) {
       return Color.defaultInvitationColor();
     } else {
-      return this.pocketInvitation.color;
+      return this.invitation.color;
     }
   }
 
-  private _relativePocketInvitationHeight(): string {
-    let relativeValue = (this.pocketInvitation.height / this.pocketInvitation.width) * 100;
+  private _relativeInvitationHeight(): string {
+    let relativeValue = (this.invitation.height / this.invitation.width) * 100;
     relativeValue = Math.round(relativeValue * 100) / 100;
     return `${relativeValue}%`;
   }
 
   private _drawShape(): string {
     let polygonString = "polygon(";
-    this.pocketInvitation.outline.forEach( point => {
+    this.invitation.outline.forEach( point => {
       polygonString += `${point.x}% ${point.y}%, `;
     });
     polygonString = polygonString.slice(0, -2);

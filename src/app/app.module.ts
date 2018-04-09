@@ -12,9 +12,9 @@ import { CanvasContainerComponent } from "./canvas-components/canvas-container/c
 import { CollectionSettingsComponent } from "./canvas-components/collection-settings/collection-settings.component";
 import { FooterComponent } from "./footer-component/footer.component";
 import { HeaderComponent } from "./header-component/header.component";
+import { InvitationCanvasComponent } from "./canvas-components/invitation-canvas/invitation-canvas.component";
 import { LayerSettingsComponent } from "./canvas-components/layer-settings/layer-settings.component";
 import { OffScreenTabComponent } from "./canvas-components/off-screen-tab/off-screen-tab.component";
-import { PocketInvitationCanvasComponent } from "./canvas-components/pocket-invitation-canvas/pocket-invitation-canvas.component"; // tslint:disable-line
 import { SelectInputComponent } from "./select-input-component/select-input.component";
 
 import { SixmkApiService } from "./services/sixmk-api.service";
@@ -28,9 +28,9 @@ import { SixmkApiService } from "./services/sixmk-api.service";
     CollectionSettingsComponent,
     FooterComponent,
     HeaderComponent,
+    InvitationCanvasComponent,
     LayerSettingsComponent,
     OffScreenTabComponent,
-    PocketInvitationCanvasComponent,
     SelectInputComponent
   ],
   imports: [
