@@ -384,20 +384,24 @@
     {
       "foldLines":[
         {
-          "xPercent":25,
-          "yPercent":100
+          "point1":{
+            "xPercent":25,
+            "yPercent":100
+          },
+          "point2":{
+            "xPercent":25,
+            "yPercent":0
+          }
         },
         {
-          "xPercent":25,
-          "yPercent":0
-        },
-        {
-          "xPercent":75,
-          "yPercent":100
-        },
-        {
-          "xPercent":75,
-          "yPercent":0
+          "point1":{
+            "xPercent":75,
+            "yPercent":100
+          },
+          "point2":{
+            "xPercent":75,
+            "yPercent":0
+          }
         }
       ],
       "heightInInches":7,
@@ -437,7 +441,24 @@
         "name":"Panel Cards"
       },
       "name":"Square Panel Card",
-      "outlinePoints":[],
+      "outlinePoints":[
+        {
+          "xPercent":0,
+          "yPercent":0
+        },
+        {
+          "xPercent":0,
+          "yPercent":100
+        },
+        {
+          "xPercent":100,
+          "yPercent":100
+        },
+        {
+          "xPercent":100,
+          "yPercent":0
+        }
+      ],
       "pocketLines":[],
       "widthInInches":6.125
     },
@@ -450,7 +471,24 @@
         "name":"Panel Cards"
       },
       "name":"5x7 Panel Card",
-      "outlinePoints":[],
+      "outlinePoints":[
+        {
+          "xPercent":0,
+          "yPercent":0
+        },
+        {
+          "xPercent":0,
+          "yPercent":100
+        },
+        {
+          "xPercent":100,
+          "yPercent":100
+        },
+        {
+          "xPercent":100,
+          "yPercent":0
+        }
+      ],
       "pocketLines":[],
       "widthInInches":5
     },
@@ -463,8 +501,46 @@
         "name":"Panel Cards"
       },
       "name":"Panel Pocket",
-      "outlinePoints":[],
-      "pocketLines":[],
+      "outlinePoints":[
+        {
+          "xPercent":0,
+          "yPercent":0
+        },
+        {
+          "xPercent":0,
+          "yPercent":100
+        },
+        {
+          "xPercent":100,
+          "yPercent":100
+        },
+        {
+          "xPercent":100,
+          "yPercent":0
+        }
+      ],
+      "pocketLines":[
+        {
+          "point1":{
+            "xPercent":0,
+            "yPercent":50
+          },
+          "point2":{
+            "xPercent":50,
+            "yPercent":42.86
+          }
+        },
+        {
+          "point1":{
+            "xPercent":50,
+            "yPercent":42.86
+          },
+          "point2":{
+            "xPercent":100,
+            "yPercent":50
+          }
+        }
+      ],
       "widthInInches":5
     }
   ]

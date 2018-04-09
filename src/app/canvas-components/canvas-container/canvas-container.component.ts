@@ -90,6 +90,8 @@ export class CanvasContainerComponent implements OnDestroy, OnInit {
   updateSelectedInvitationType(invitationType: InvitationType): void {
     if (this._queryParams !== undefined) {
       this._updateParamKeyWithValue(CanvasContainerComponent.PARAM_INVITATION_TYPE_ID, invitationType.id);
+      const invitations = this.invitationsForType(invitationType);
+      this.updateSelectedInvitation(invitations[0]);
     }
   }
 

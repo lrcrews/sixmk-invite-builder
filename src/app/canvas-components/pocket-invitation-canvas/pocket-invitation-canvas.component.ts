@@ -42,7 +42,7 @@ export class PocketInvitationCanvasComponent {
   }
 
   lineStyles(line: Line): {} {
-    if (this.pocketInvitation === undefined) {
+    if (this.pocketInvitation === undefined || line === undefined) {
       return {};
     } else {
       const angle = this._lineAngle(line.point1, line.point2);
